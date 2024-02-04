@@ -1,10 +1,10 @@
-import axios, { AxiosRequestConfig, AxiosResponse } from "axios";
+import axios, { AxiosRequestConfig, AxiosResponse } from 'axios'
 
 /**
  * NetworkManager는 네트워크 요청을 관리하는 싱글톤 클래스입니다.
  */
 class NetworkManager {
-  private static readonly instance: NetworkManager = new NetworkManager();
+  private static readonly instance: NetworkManager = new NetworkManager()
 
   /**
    * NetworkManager의 생성자입니다.
@@ -12,7 +12,7 @@ class NetworkManager {
    */
   private constructor() {
     if (NetworkManager.instance) {
-      throw new Error("싱글톤 클래스입니다. getInstance 메소드를 사용하세요");
+      throw new Error('싱글톤 클래스입니다. getInstance 메소드를 사용하세요')
     }
   }
 
@@ -21,7 +21,7 @@ class NetworkManager {
    * @returns {NetworkManager} NetworkManager의 인스턴스
    */
   public static getInstance(): NetworkManager {
-    return NetworkManager.instance;
+    return NetworkManager.instance
   }
 
   /**
@@ -29,37 +29,35 @@ class NetworkManager {
    * @param {Partial<AxiosRequestConfig>} req - axios 요청 설정
    * @returns {AxiosInstance} 인터셉터가 설정된 axios 인스턴스
    */
-  public request<Req, Res>(
-    req: Partial<AxiosRequestConfig<Req>>
-  ): Promise<AxiosResponse<Res, unknown>> {
-    const config = req;
+  public request<Req, Res>(req: Partial<AxiosRequestConfig<Req>>): Promise<AxiosResponse<Res, unknown>> {
+    const config = req
 
     // config request options
-    config.baseURL = "/";
-    config.withCredentials = true;
+    config.baseURL = '/'
+    config.withCredentials = true
 
     // config request headers
-    config.headers = config.headers || {};
-    config.headers["Content-Type"] = "application/json";
+    config.headers = config.headers || {}
+    config.headers['Content-Type'] = 'application/json'
 
     // create request instance
-    const instance = axios.create(config);
+    const instance = axios.create(config)
 
     // add request interceptors
     instance.interceptors.request.use(
       (req) => req,
-      (err) => err
-    );
+      (err) => err,
+    )
 
     // add response interceptors
     instance.interceptors.response.use(
       (req) => req,
-      (err) => err
-    );
+      (err) => err,
+    )
 
     // return request instance
-    return instance(config);
+    return instance(config)
   }
 }
 
-export default NetworkManager.getInstance();
+export default NetworkManager.getInstance()
