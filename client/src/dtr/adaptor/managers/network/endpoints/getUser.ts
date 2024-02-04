@@ -1,13 +1,25 @@
+import { useSuspenseQuery } from '@tanstack/react-query'
 import NetworkManager from '../Network.manager'
 
-export default function reqGetUser(userId: IReqGetUser['path']['userId']) {
+export const reqGetUser = (props: Omit<IReqGetUser, 'method' | 'url'>) => {
   return NetworkManager.request<IReqGetUser, IResGetUser>({
     method: 'GET',
-    url: `https://reqres.in/api/users/${userId}`,
+    url: `https://reqres.in/api/users/${props.path.userId}`,
+  })
+}
+
+export const useReadUser = (props: Omit<IReqGetUser, 'method' | 'url'>) => {
+  return useSuspenseQuery({
+    queryKey: [`https://reqres.in/api/users/${props.path.userId}`],
+    queryFn: () =>
+      reqGetUser(props)
+        .then((res) => res.data)
+        .then((res) => NetworkManager.sleep<IResGetUser>(2000, res)),
   })
 }
 
 export interface IReqGetUser {
+  method: 'GET'
   url: 'https://reqres.in/api/users/:userId' | string
   path: {
     userId: number

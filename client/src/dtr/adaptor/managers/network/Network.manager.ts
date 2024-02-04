@@ -1,3 +1,4 @@
+import { QueryClientConfig } from '@tanstack/react-query'
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios'
 
 /**
@@ -24,21 +25,18 @@ class NetworkManager {
     return NetworkManager.instance
   }
 
+  public async sleep<T>(ms: number, data: T): Promise<T> {
+    const time = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms))
+    await time(ms)
+    return data
+  }
   /**
    * 주어진 요청 설정을 사용하여 axios 인스턴스를 생성하고, 이 인스턴스에 인터셉터를 설정한 후 요청을 실행합니다.
    * @param {Partial<AxiosRequestConfig>} req - axios 요청 설정
    * @returns {AxiosInstance} 인터셉터가 설정된 axios 인스턴스
    */
   public request<Req, Res>(req: Partial<AxiosRequestConfig<Req>>): Promise<AxiosResponse<Res, unknown>> {
-    const config = req
-
-    // config request options
-    config.baseURL = '/'
-    config.withCredentials = true
-
-    // config request headers
-    config.headers = config.headers || {}
-    config.headers['Content-Type'] = 'application/json'
+    const config = { ...BASE_AXIOS_CONFIG, ...req }
 
     // create request instance
     const instance = axios.create(config)
@@ -61,3 +59,22 @@ class NetworkManager {
 }
 
 export default NetworkManager.getInstance()
+
+export const BASE_AXIOS_CONFIG: AxiosRequestConfig = {
+  baseURL: '/',
+  // withCredentials: true,
+  headers: {
+    'Content-Type': 'application/json',
+  },
+}
+
+export const QUERY_CLIENT_CONFIG: QueryClientConfig = {
+  defaultOptions: {
+    queries: {
+      networkMode: 'always',
+    },
+    mutations: {
+      networkMode: 'offlineFirst',
+    },
+  },
+}

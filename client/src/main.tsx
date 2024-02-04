@@ -1,11 +1,18 @@
-import "./dtr/adaptor/managers/style/global.css";
+import './dtr/adaptor/managers/style/global.css'
 
-import React from "react";
-import ReactDOM from "react-dom/client";
-import HomeView from "./views/home/Home.view";
+import React from 'react'
+import ReactDOM from 'react-dom/client'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 
-ReactDOM.createRoot(document.getElementById("root")!).render(
+import App from './App'
+import { QUERY_CLIENT_CONFIG } from './dtr/adaptor/managers/network/Network.manager'
+
+const qc = new QueryClient(QUERY_CLIENT_CONFIG)
+
+ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <HomeView />
-  </React.StrictMode>
-);
+    <QueryClientProvider client={qc}>
+      <App />
+    </QueryClientProvider>
+  </React.StrictMode>,
+)
