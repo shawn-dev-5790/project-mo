@@ -67,7 +67,7 @@ class DateManager {
    * @returns {DateManager} DateManager 인스턴스
    */
   public setTimeZone(timeZone: keyof typeof this.SUPPORT_TIME_ZONE) {
-    if (!this.SUPPORT_TIME_ZONE[timeZone]) this.timeZone = this.SUPPORT_TIME_ZONE[timeZone]
+    if (this.SUPPORT_TIME_ZONE[timeZone]) this.timeZone = this.SUPPORT_TIME_ZONE[timeZone]
     return this
   }
 
