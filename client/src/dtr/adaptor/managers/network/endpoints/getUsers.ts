@@ -1,18 +1,18 @@
 import { useSuspenseQuery } from '@tanstack/react-query'
 import NetworkManager from '../Network.manager'
 
-export const reqGetUserList = (props: Omit<IReqGetUserList, 'method' | 'url'>) => {
+export const reqGetUsers = (props: Omit<IReqGetUserList, 'method' | 'url'>) => {
   return NetworkManager.request<IReqGetUserList, IResGetUserList>({
     method: 'GET',
     url: `https://reqres.in/api/users/?page=${props.query.page}`,
   })
 }
 
-export const useReadUserList = (props: Omit<IReqGetUserList, 'method' | 'url'>) => {
+export const useReadUsers = (props: Omit<IReqGetUserList, 'method' | 'url'>) => {
   return useSuspenseQuery({
     queryKey: [`https://reqres.in/api/users/?page=${props.query.page}`],
     queryFn: () =>
-      reqGetUserList(props)
+      reqGetUsers(props)
         .then((res) => res.data)
         .then((res) => NetworkManager.sleep<IResGetUserList>(1000, res)),
   })

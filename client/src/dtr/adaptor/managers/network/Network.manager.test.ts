@@ -1,5 +1,5 @@
 import { test, describe, expect } from 'vitest'
-import reqGetUser from './endpoints/getUser'
+import { reqGetUser } from './endpoints/getUser'
 
 /**
  * NetworkManager에 대한 테스트 스위트입니다.
@@ -10,7 +10,7 @@ describe('NetworkManager', () => {
    */
   test('creates a request using axios instance', async () => {
     // getUser 요청을 실행하고 응답을 받습니다.
-    const res = await reqGetUser(2)
+    const res = await reqGetUser({ path: { userId: 2 } })
 
     // 응답 데이터가 예상한 값과 일치하는지 확인합니다.
     expect(res.data).toEqual({
