@@ -151,9 +151,9 @@ class DateManager {
     // prettier-ignore
     return {
         ['HH:mm']:                            `${hour}:${minute}`,
-        ['month dd, yyyy Weekday HH:mm TZ']:  `${month} ${day}, ${year} ${localeWeekday.long} ${hour}:${minute} (${timeZoneName})`,
-        ['month dd, yyyy HH:mm']:             `${month} ${day}, ${year} ${hour}:${minute}`,
-        ['month dd, yyyy']:                   `${month} ${day}, ${year}`,
+        ['Month dd, yyyy Weekday HH:mm TZ']:  `${month} ${day}, ${year} ${localeWeekday.long} ${hour}:${minute} (${timeZoneName})`,
+        ['Month dd, yyyy HH:mm']:             `${month} ${day}, ${year} ${hour}:${minute}`,
+        ['Month dd, yyyy']:                   `${month} ${day}, ${year}`,
         ['yyyy-MM-dd']:                       `${year}-${localeMonth.digit}-${day}`,
         ['yyyy.MM.dd']:                       `${year}.${localeMonth.digit}.${day}`,
         ['yyyy.MM.dd HH:mm']:                 `${year}.${localeMonth.digit}.${day} ${hour}:${minute}`,
