@@ -1,4 +1,4 @@
-import { useReadUsers } from '../../dtr/adaptor/managers/network/endpoints/getUsers'
+import { useReadUsers } from '../../dtr/adaptor/endpoints/getUsers'
 import { UsersTable } from './components/UsersTable'
 
 const UsersView: React.FC = () => {

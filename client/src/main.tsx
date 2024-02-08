@@ -5,7 +5,7 @@ import ReactDOM from 'react-dom/client'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 
 import App from './App'
-import { QUERY_CLIENT_CONFIG } from './dtr/adaptor/managers/network/Network.manager'
+import { QUERY_CLIENT_CONFIG } from './dtr/adaptor/managers/Network.manager'
 
 const queryClient = new QueryClient(QUERY_CLIENT_CONFIG)
 

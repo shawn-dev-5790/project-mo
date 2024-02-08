@@ -1,5 +1,5 @@
 import { test, describe, expect } from 'vitest'
-import { reqGetUser } from './endpoints/getUser'
+import { reqGetUser } from '../endpoints/getUser'
 
 /**
  * NetworkManager에 대한 테스트 스위트입니다.

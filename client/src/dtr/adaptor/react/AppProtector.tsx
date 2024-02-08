@@ -1,7 +1,7 @@
-import { useReadUser } from '../managers/network/endpoints/getUser'
 import { AppErrorBoundary } from './AppErrorBoundary'
 import { AppSuspense } from './AppSuspense'
 import { AppFallback } from './AppFallback'
+import { useReadUser } from '../endpoints/getUser'
 
 /**
  * AppProtector는 에러, 로딩, 체커를 props로 받아 각각의 상황에 맞게 렌더링합니다.
