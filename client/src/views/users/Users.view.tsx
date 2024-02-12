@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom'
 import { useReadUsers } from '../../dtr/adaptor/managers/network/endpoints/getUsers'
-import { UsersTable } from './components/UsersTable'
+import { List } from './components/List'
 
 const UsersView: React.FC = () => {
   return <Content />
@@ -15,7 +15,7 @@ const Content: React.FC = () => {
   return (
     <>
       <h1>users , {userId}</h1>
-      <UsersTable data={users} lang={null} opts={null} />
+      <List data={users} lang={null} opts={null} />
     </>
   )
 }

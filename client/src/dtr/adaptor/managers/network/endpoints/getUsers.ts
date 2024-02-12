@@ -41,6 +41,6 @@ export const useReadUsers = (props: Omit<IReqGetUserList, 'method' | 'url'>) => 
     queryFn: () =>
       reqGetUsers(props)
         .then((res) => res.data)
-        .then((res) => sleep<IResGetUserList>(1000, res)),
+        .then((res) => sleep<IResGetUserList>(100, res)),
   })
 }

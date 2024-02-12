@@ -1,0 +1,49 @@
+/* List.css */
+.list_wrap {
+  display: flex;
+  flex-flow: column;
+  background-color: #efefef;
+}
+.list_tit {
+  font-size: 2rem;
+}
+.list_page {
+}
+.list_cont {
+  display: flex;
+  flex-flow: column;
+  gap: 4px;
+}
+
+/* Item.css */
+.item_wrap {
+  display: flex;
+  gap: 12px;
+  padding: 12px 8px;
+  background-color: #fff;
+}
+.item_img {
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  width: 80px;
+  height: 80px;
+  border: 1px solid #999;
+  border-radius: 12%;
+  & img {
+    display: block;
+    width: 100%;
+  }
+}
+.item_info {
+  overflow: hidden;
+  display: flex;
+  flex-flow: column wrap;
+  gap: 4px;
+  padding: 12px 0;
+  & > * {
+    background-color: gold;
+  }
+}
