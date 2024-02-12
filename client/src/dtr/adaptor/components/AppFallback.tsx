@@ -1,4 +1,4 @@
-import style from './AppFallback.module.css'
+import style from './App.module.css'
 
 export const AppFallback: React.FC<{ img: string; title: string; desc: string }> = (props) => {
   return (

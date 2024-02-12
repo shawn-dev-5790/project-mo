@@ -4,9 +4,7 @@ import axios, { AxiosRequestConfig, AxiosResponse } from 'axios'
 class NetworkManager {
   private static readonly instance: NetworkManager = new NetworkManager()
   private constructor() {
-    if (NetworkManager.instance) {
-      throw new Error('싱글톤 클래스입니다. getInstance 메소드를 사용하세요')
-    }
+    if (NetworkManager.instance) throw new Error('싱글톤 클래스입니다. getInstance 메소드를 사용하세요')
   }
   public static getInstance(): NetworkManager {
     return NetworkManager.instance

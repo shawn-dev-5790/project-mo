@@ -8,9 +8,7 @@ class DateManager {
    * 싱글톤 패턴을 사용하므로, 직접 인스턴스를 생성하는 대신 getInstance 메소드를 사용해야 합니다.
    */
   private constructor() {
-    if (DateManager.instance) {
-      throw new Error('싱글톤 클래스입니다. getInstance 메소드를 사용하세요')
-    }
+    if (DateManager.instance) throw new Error('싱글톤 클래스입니다. getInstance 메소드를 사용하세요')
   }
 
   /**
