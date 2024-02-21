@@ -1,5 +1,5 @@
 import { useParams } from 'react-router-dom'
-import { useReadUsers } from '../../dtr/adaptor/managers/network/endpoints/getUsers'
+import { useReadUsers } from '../../_core_/adaptor/managers/network/endpoints/getUsers'
 import { List } from './components/List'
 
 const UsersView: React.FC = () => {
