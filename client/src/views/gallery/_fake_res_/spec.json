@@ -1,0 +1,128 @@
+{
+  "page_name": "GalleryView",
+  "contents": {
+    "h2": "Gallery View for #{galleryId}",
+    "section": {
+      "linked_image": {
+        "id": "_linked_image_id_1",
+        "name": "Google",
+        "img_url": "https://image.ohou.se/i/bucketplace-v2-development/uploads/cards/snapshots/170219952550422552.jpeg?w=1440",
+        "img_size": [720, 961],
+        "products": [
+          {
+            "id": "_product_id_1",
+            "pos": [71.12, 77.33]
+          },
+          {
+            "id": "_product_id_2",
+            "pos": [23.12, 11.33]
+          },
+          {
+            "id": "_product_id_3",
+            "pos": [42.12, 12.33]
+          },
+          {
+            "id": "_product_id_4",
+            "pos": [12.12, 22.33]
+          },
+          {
+            "id": "_product_id_5",
+            "pos": [32.12, 32.33]
+          },
+          {
+            "id": "_product_id_6",
+            "pos": [52.12, 42.33]
+          },
+          {
+            "id": "_product_id_7",
+            "pos": [62.12, 52.33]
+          },
+          {
+            "id": "_product_id_8",
+            "pos": [72.12, 62.33]
+          },
+          {
+            "id": "_product_id_9",
+            "pos": [82.12, 72.33]
+          },
+          {
+            "id": "_product_id_10",
+            "pos": [92.12, 82.33]
+          },
+          {
+            "id": "_product_id_11",
+            "pos": [92.12, 12.33]
+          },
+          {
+            "id": "_product_id_12",
+            "pos": [12.12, 12.33]
+          },
+          {
+            "id": "_product_id_13",
+            "pos": [12.12, 12.33]
+          },
+          {
+            "id": "_product_id_14",
+            "pos": [13.12, 12.33]
+          },
+          {
+            "id": "_product_id_15",
+            "pos": [14.12, 32.33]
+          },
+          {
+            "id": "_product_id_16",
+            "pos": [52.12, 12.33]
+          },
+          {
+            "id": "_product_id_17",
+            "pos": [62.12, 52.33]
+          },
+          {
+            "id": "_product_id_18",
+            "pos": [17.12, 12.33]
+          },
+          {
+            "id": "_product_id_19",
+            "pos": [82.12, 72.33]
+          },
+          {
+            "id": "_product_id_20",
+            "pos": [12.12, 82.33]
+          },
+          {
+            "id": "_product_id_21",
+            "pos": [22.12, 92.33]
+          },
+          {
+            "id": "_product_id_22",
+            "pos": [12.12, 22.33]
+          },
+          {
+            "id": "_product_id_23",
+            "pos": [22.12, 12.33]
+          },
+          {
+            "id": "_product_id_24",
+            "pos": [23.12, 22.33]
+          },
+          {
+            "id": "_product_id_25",
+            "pos": [42.12, 32.33]
+          },
+          {
+            "id": "_product_id_26",
+            "pos": [52.12, 42.33]
+          },
+          {
+            "id": "_product_id_27",
+            "pos": [62.12, 252.33]
+          },
+          {
+            "id": "_product_id_28",
+            "pos": [22.12, 62.33]
+          }
+        ]
+      }
+    }
+  }
+}
