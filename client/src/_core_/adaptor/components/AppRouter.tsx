@@ -2,13 +2,18 @@ import { Routes, Route } from 'react-router-dom'
 import HomeView from '../../../views/home/Home.view'
 import UsersView from '../../../views/users/Users.view'
 import RouteManager from '../managers/route/Route.manager'
+import GalleryView from '../../../views/gallery/Gallery.view'
 
 export const AppRouter: React.FC = () => {
   return (
     <Routes>
       <Route path="/users">
-        <Route path=":userId" element={<UsersView />} />
         <Route path="" element={<AppRouteErrorMessage code="404" />} />
+        <Route path=":userId" element={<UsersView />} />
+      </Route>
+      <Route path="/gallery">
+        <Route path="" element={<AppRouteErrorMessage code="404" />} />
+        <Route path=":galleryId" element={<GalleryView />} />
       </Route>
       <Route path="/" element={<HomeView />} />
       <Route path="*" element={<AppRouteErrorMessage code="404" />} />
