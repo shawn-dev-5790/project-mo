@@ -1,5 +1,6 @@
 import { useParams } from 'react-router-dom'
-import { LinkedImage } from './components/LinkedImage'
+import { LinkedProduct } from './components/LinkedProduct'
+import { AppSuspense } from '../../_core_/adaptor/components/AppSuspense'
 
 const GalleryView: React.FC = () => {
   return (
@@ -24,7 +25,9 @@ const Content: React.FC = () => {
       }}
     >
       <h2>gallery for {galleryId}</h2>
-      <LinkedImage />
+      <AppSuspense fallback="loading... linked product ">
+        <LinkedProduct />
+      </AppSuspense>
       <section>
         <strong>이미지에 들어간 상품 목록</strong>
       </section>

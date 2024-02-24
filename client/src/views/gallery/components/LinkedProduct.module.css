@@ -2,8 +2,10 @@
   width: 600px;
 }
 .tit {
+  border: 1px solid;
 }
 .cont {
+  border: 1px solid;
 }
 .linked_img {
   display: flex;
@@ -27,7 +29,6 @@
 }
 .products button {
   transition: all 0.3s ease-in-out;
-  overflow: hidden;
   position: absolute;
   display: flex;
   justify-content: center;
@@ -35,8 +36,5 @@
   width: 24px;
   height: 24px;
   border-radius: 50%;
-  top: 50%;
-  left: 50%;
-  opacity: 0;
   cursor: pointer;
 }

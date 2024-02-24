@@ -6,6 +6,14 @@ export class ProductsRes {
     products: Product[]
   }
 }
+export class ProductRes {
+  code: string
+  message: string
+  data: {
+    lang: ProductLanguage
+    product: Product
+  }
+}
 export class Product {
   id: string // 제품의 고유 식별자
   name: string // 제품의 이름
@@ -17,12 +25,10 @@ export class Product {
   created_at: Date // 제품이 생성된 날짜와 시간
   updated_at: Date // 제품이 마지막으로 업데이트된 날짜와 시간
 }
-
 export class ProductOptions {
   length: number
   lang_type: 'ko' | 'en' | 'ja'
 }
-
 export class ProductLanguage {
   name: string
   desc: string
