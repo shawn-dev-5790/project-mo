@@ -1,10 +1,10 @@
-import { NestFactory } from '@nestjs/core';
-import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
-import { AppModule } from './app.module';
+import { NestFactory } from '@nestjs/core'
+import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger'
+import { AppModule } from './app/app.module'
 
 async function bootstrap() {
   // create nest app
-  const app = await NestFactory.create(AppModule);
+  const app = await NestFactory.create(AppModule)
 
   // create document config
   const documentConfig = new DocumentBuilder()
@@ -12,20 +12,20 @@ async function bootstrap() {
     .setDescription('Nest App API description')
     .setVersion('0.1')
     .addTag('API')
-    .build();
+    .build()
 
   // create document
-  const document = SwaggerModule.createDocument(app, documentConfig);
+  const document = SwaggerModule.createDocument(app, documentConfig)
 
   // setup - document
-  SwaggerModule.setup('docs', app, document);
+  SwaggerModule.setup('docs', app, document)
 
   // setup - middlewares
-  app.enableCors();
+  app.enableCors()
 
   // server - start
-  await app.listen(3000);
+  await app.listen(3000)
 }
 
 // execute
-bootstrap();
+bootstrap()
