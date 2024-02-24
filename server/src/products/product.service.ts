@@ -1,20 +1,12 @@
 import { Injectable } from '@nestjs/common'
+import { ProductFactory } from './product.factory'
+import { ProductOptions, ProductsRes } from './product.dto'
 
 @Injectable()
 export class ProductService {
-  readProducts(): string[] {
-    return ['products']
-  }
-  readProductById(id: string): string {
-    return 'products' + id
-  }
-  createProduct(): string {
-    return 'create product'
-  }
-  updateProduct(): string {
-    return 'update product'
-  }
-  deleteProduct(): string {
-    return 'delete product'
+  constructor(private readonly productFactory: ProductFactory) {}
+
+  readProducts({ lang_type, length }: ProductOptions): ProductsRes {
+    return this.productFactory.generateProductRes({ lang_type, length })
   }
 }
