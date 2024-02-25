@@ -33,6 +33,16 @@ export const AppFallbackLoading: React.FC = () => (
     height={'100%'}
   />
 )
+
+export const AppFallbackError: React.FC = () => (
+  <AppFallback
+    img={'https://dummyimage.com/512x512/000/fff&text=error...'}
+    title={'Unexpected Error occured'}
+    desc={'plz try agian later'}
+    width={'100%'}
+    height={'100%'}
+  />
+)
 export const AppFallbackDummy: React.FC<{ idx: number }> = ({ idx }) => (
   <div
     style={{
