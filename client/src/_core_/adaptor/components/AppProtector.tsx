@@ -1,6 +1,5 @@
 import { AppErrorBoundary } from './AppErrorBoundary'
 import { AppSuspense } from './AppSuspense'
-import { AppFallback } from './AppFallback'
 import { useReadUser } from '../managers/network/endpoints/getUser'
 
 /**
@@ -62,20 +61,8 @@ const CampaignIdChecker: React.FC<{ children: React.ReactNode }> = (props) => {
 export const AppProtectorForPermission: React.FC<{ children: React.ReactNode }> = (props) => {
   return (
     <AppProtector
-      error={
-        <AppFallback
-          img="https://dummyimage.com/200x200/000/fff&text=:)"
-          title="권한 정보가 없습니다."
-          desc="여기로 문의해주세요."
-        />
-      }
-      loading={
-        <AppFallback
-          img="https://dummyimage.com/200x200/000/fff&text=:)"
-          title="권한을 확인 중입니다."
-          desc="잠시만 기다려주세요."
-        />
-      }
+      error={'"권한 정보가 없습니다."'}
+      loading={'권한을 확인 중입니다.'}
       checker={<PermissionChecker>{props.children}</PermissionChecker>}
     />
   )
@@ -87,20 +74,8 @@ export const AppProtectorForPermission: React.FC<{ children: React.ReactNode }> 
 export const AppProtectorForSiteId: React.FC<{ children: React.ReactNode }> = (props) => {
   return (
     <AppProtector
-      error={
-        <AppFallback
-          img="https://dummyimage.com/200x200/000/fff&text=:)"
-          title="사이트 정보가 없습니다."
-          desc="여기로 문의해주세요."
-        />
-      }
-      loading={
-        <AppFallback
-          img="https://dummyimage.com/200x200/000/fff&text=:)"
-          title="사이트 정보를 확인 중입니다."
-          desc="잠시만 기다려주세요."
-        />
-      }
+      error={'사이트 정보가 없습니다.'}
+      loading={'사이트 정보를 확인 중입니다.'}
       checker={<SiteIdChecker>{props.children}</SiteIdChecker>}
     />
   )
@@ -112,20 +87,8 @@ export const AppProtectorForSiteId: React.FC<{ children: React.ReactNode }> = (p
 export const AppProtectorForCampaignId: React.FC<{ children: React.ReactNode }> = (props) => {
   return (
     <AppProtector
-      error={
-        <AppFallback
-          img="https://dummyimage.com/200x200/000/fff&text=:)"
-          title="캠페인 정보가 없습니다."
-          desc="여기로 문의해주세요."
-        />
-      }
-      loading={
-        <AppFallback
-          img="https://dummyimage.com/200x200/000/fff&text=:)"
-          title="캠페인 정보를 확인 중입니다."
-          desc="잠시만 기다려주세요."
-        />
-      }
+      error={'캠페인 정보가 없습니다.'}
+      loading={'캠페인 정보를 확인 중입니다.'}
       checker={<CampaignIdChecker>{props.children}</CampaignIdChecker>}
     />
   )
@@ -137,20 +100,8 @@ export const AppProtectorForCampaignId: React.FC<{ children: React.ReactNode }> 
 export const AppProtectorForDivice: React.FC<{ children: React.ReactNode }> = (props) => {
   return (
     <AppProtector
-      error={
-        <AppFallback
-          img="https://dummyimage.com/200x200/000/fff&text=:)"
-          title="디바이스 정보가 없습니다."
-          desc="여기로 문의해주세요."
-        />
-      }
-      loading={
-        <AppFallback
-          img="https://dummyimage.com/200x200/000/fff&text=:)"
-          title="디바이스 정보를 확인 중입니다."
-          desc="잠시만 기다려주세요."
-        />
-      }
+      error={'디바이스 정보가 없습니다.'}
+      loading={'디바이스 정보를 확인 중입니다.'}
       checker={<DiviceChecker>{props.children}</DiviceChecker>}
     />
   )
@@ -162,20 +113,8 @@ export const AppProtectorForDivice: React.FC<{ children: React.ReactNode }> = (p
 export const AppProtectorForLegion: React.FC<{ children: React.ReactNode }> = (props) => {
   return (
     <AppProtector
-      error={
-        <AppFallback
-          img="https://dummyimage.com/200x200/000/fff&text=:)"
-          title="지역 정보가 없습니다."
-          desc="여기로 문의해주세요."
-        />
-      }
-      loading={
-        <AppFallback
-          img="https://dummyimage.com/200x200/000/fff&text=:)"
-          title="지역 정보를 확인 중입니다."
-          desc="잠시만 기다려주세요."
-        />
-      }
+      error={'지역 정보가 없습니다.'}
+      loading={'지역 정보를 확인 중입니다.'}
       checker={<LegionChecker>{props.children}</LegionChecker>}
     />
   )
@@ -187,20 +126,8 @@ export const AppProtectorForLegion: React.FC<{ children: React.ReactNode }> = (p
 export const AppProtectorForView: React.FC<{ children: React.ReactNode }> = (props) => {
   return (
     <AppProtector
-      error={
-        <AppFallback
-          img="https://dummyimage.com/200x200/000/fff&text=:)"
-          title="페이지에서 알 수 없는 에러가 발생하였습니다."
-          desc="여기로 문의해주세요."
-        />
-      }
-      loading={
-        <AppFallback
-          img="https://dummyimage.com/200x200/000/fff&text=:)"
-          title="데이터를 불로오고 있습니다."
-          desc="잠시만 기다려주세요."
-        />
-      }
+      error={'페이지에서 알 수 없는 에러가 발생하였습니다.'}
+      loading={'데이터를 불로오고 있습니다.'}
       checker={<>{props.children}</>}
     />
   )

@@ -1,53 +1,39 @@
-import { useParams } from 'react-router-dom'
-import { LinkedProduct } from './components/LinkedProduct'
+import css from './Gallery.module.css'
 import { AppSuspense } from '../../_core_/adaptor/components/AppSuspense'
+import { AppFallbackLoading } from '../../_core_/adaptor/components/AppFallback'
+import { GalleryHeader } from './components/GalleryHeader'
+import { GalleryProducts } from './components/GalleryProducts'
+import { GalleryDetail } from './components/GalleryDetail'
+import { GalleryReviews } from './components/GalleryReviews'
+import { GalleryLinkedImage } from './components/GalleryLinkedImage'
+import { GalleryFooter } from './components/GalleryFooter'
 
 const GalleryView: React.FC = () => {
   return (
     <>
-      <Content />
+      <Layout />
     </>
   )
 }
 
 export default GalleryView
 
-const Content: React.FC = () => {
-  const { galleryId = '' } = useParams()
-
+const Layout: React.FC = () => {
   return (
-    <div
-      style={{
-        minHeight: '100vh',
-        width: '600px',
-        margin: '0 auto',
-        background: '#efefef',
-      }}
-    >
-      <h2>gallery for {galleryId}</h2>
-      <AppSuspense fallback="loading... linked product ">
-        <LinkedProduct />
-      </AppSuspense>
-      <section>
-        <strong>이미지에 들어간 상품 목록</strong>
-      </section>
-      <section>
-        <strong>상품 조합 이름</strong>
-        <p>상품 조합 설명</p>
-      </section>
-      <section>
-        <strong>판매자 정보</strong>
-        <p>판매자 글</p>
-      </section>
-      <section>
-        <strong>리뷰 목록</strong>
-        <ul>
-          <li>
-            <b>리뷰어 이름</b>
-            <p>리뷰 내용</p>
-          </li>
-        </ul>
-      </section>
+    <div className={css.wrap}>
+      <header>
+        <AppSuspense fallback={<AppFallbackLoading />} children={<GalleryHeader />} />
+      </header>
+      <main>
+        <AppSuspense fallback={<AppFallbackLoading />} children={<GalleryLinkedImage />} />
+        <AppSuspense fallback={<AppFallbackLoading />} children={<GalleryProducts />} />
+        <AppSuspense fallback={<AppFallbackLoading />} children={<GalleryDetail />} />
+        <AppSuspense fallback={<AppFallbackLoading />} children={<GalleryReviews />} />
+        {/* {Array.from({ length: 10 }, (_, i) => (
+          <AppFallbackDummy key={i} idx={i} />
+        ))} */}
+        <GalleryFooter />
+      </main>
     </div>
   )
 }

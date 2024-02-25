@@ -1,24 +1,26 @@
-import css from './LinkedProduct.module.css'
+import css from './GalleryLinkedImage.module.css'
 import { useReadLinkedProduct } from '../../../_core_/adaptor/managers/network/endpoints/getLinkedProduct'
-import { DialogProdcut } from './DialogProduct'
-import { useState } from 'react'
-import { AppSuspense } from '../../../_core_/adaptor/components/AppSuspense'
 
-export const LinkedProduct: React.FC = () => {
+export const GalleryLinkedImage: React.FC = () => {
   const { data: linkedProductsRes = null } = useReadLinkedProduct({ query: { lang: 'ko', size: 5 } })
 
   const data = linkedProductsRes?.data || null
-
-  const [selected, setSelected] = useState<string>('')
 
   return (
     <>
       {data && (
         <section className={css.wrap}>
-          <strong className={css.tit}>{data?.lang.name}</strong>
-          <p>{data.lang.desc}</p>
+          {/* SECTION HEAD */}
+          <div>
+            <strong>Hyperlinked Image</strong>
+            <p>An image that functions as a link. Clicking it will redirect you to another location</p>
+          </div>
+          {/* SECTUON CONT */}
           <div className={css.cont}>
-            <div className={css.linked_img}>
+            <div className={css.cont_img}>
+              <img src={data.linked_product.img_url} alt="" />
+            </div>
+            {/* <div className={css.linked_img}>
               <div className={css.frame_linked_img}>
                 <img src={data.linked_product.img_url} alt={'image of ' + data.lang.name} />
                 <div className={css.products}>
@@ -30,15 +32,13 @@ export const LinkedProduct: React.FC = () => {
                         children={'+'}
                       />
                       {selected === product_id && (
-                        <AppSuspense fallback={'loading... product detail'}>
-                          <DialogProdcut productId={product_id} />
-                        </AppSuspense>
-                      )}
+                    <AppSuspense fallback={'loading... product detail'}>
+                      <DialogProdcut productId={product_id} />
+                    </AppSuspense>
+                  )}
                     </div>
                   ))}
-                </div>
-              </div>
-            </div>
+                </div> */}
           </div>
         </section>
       )}
