@@ -1,0 +1,11 @@
+/* 모든 브라우저에 대한 스크롤바 숨기기 */
+.scrollbar-hidden {
+  overflow: -moz-scrollbars-none; /* Firefox에 대한 스크롤바 숨기기 */
+  scrollbar-width: none; /* Firefox를 위한 속성 */
+  -ms-overflow-style: none; /* IE 및 Edge를 위한 속성 */
+}
+
+/* WebKit 기반 브라우저 (Chrome, Safari)에 대한 스크롤바 숨기기 */
+.scrollbar-hidden::-webkit-scrollbar {
+  display: none;
+}

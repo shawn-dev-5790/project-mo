@@ -1,4 +1,7 @@
-import './_core_/adaptor/managers/style/Style.manager.global.css'
+import './_core_/adaptor/managers/style/css/variables.css'
+import './_core_/adaptor/managers/style/css/normalize.css'
+import './_core_/adaptor/managers/style/css/global.css'
+import './_core_/adaptor/managers/style/css/typography.css'
 
 import React from 'react'
 import ReactDOM from 'react-dom/client'

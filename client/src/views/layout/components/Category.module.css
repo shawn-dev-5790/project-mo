@@ -1,0 +1,29 @@
+.wrap {
+  overflow: auto;
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  gap: 0.5rem;
+  padding: 0 1rem;
+}
+.tit {
+  &::after {
+    content: '|';
+    margin-left: 0.5rem;
+    color: var(--black_300);
+  }
+}
+.cont {
+  flex: 1;
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+  gap: 0.5rem;
+
+  & > li:hover {
+    font-weight: 600;
+    color: var(--yellow_1200);
+  }
+}

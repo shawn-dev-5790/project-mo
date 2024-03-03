@@ -3,10 +3,12 @@ import HomeView from '../../../views/home/Home.view'
 import UsersView from '../../../views/users/Users.view'
 import RouteManager from '../managers/route/Route.manager'
 import GalleryView from '../../../views/gallery/Gallery.view'
+import LayoutView from '../../../views/layout/Layout.view'
 
 export const AppRouter: React.FC = () => {
   return (
     <Routes>
+      <Route path="/layout" element={<LayoutView />} />
       <Route path="/users">
         <Route path="" element={<AppRouteErrorMessage code="404" />} />
         <Route path=":userId" element={<UsersView />} />
