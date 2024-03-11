@@ -9,6 +9,7 @@ import { SiteCampaignModule } from 'src/site_campaigns/site_campaign.module'
 import { SiteModule } from 'src/sites/site.module'
 import { StatModule } from 'src/stats/stat.moudle'
 import { ReportModule } from 'src/reports/report.module'
+import { ScheduleModule } from 'src/schedules/schedule.module'
 
 @Module({
   imports: [
@@ -18,6 +19,7 @@ import { ReportModule } from 'src/reports/report.module'
     CampaignModule,
     StatModule,
     ReportModule,
+    ScheduleModule,
     ProductModule,
     LinkedProductModule,
   ],

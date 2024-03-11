@@ -1,13 +1,22 @@
 import { fakerKO as faker } from '@faker-js/faker'
+import { SiteCampaignRes } from './site_campaign.dto'
 
 export class SiteCampaignFactory {
-  generate(event: any, site: any, campaign: any, stat: any, report: any) {
+  generate(
+    event: SiteCampaignRes['data']['event'],
+    site: SiteCampaignRes['data']['site'],
+    campaign: SiteCampaignRes['data']['campaign'],
+    stat: SiteCampaignRes['data']['stat'],
+    report: SiteCampaignRes['data']['report'],
+    schedule: SiteCampaignRes['data']['schedule'],
+  ) {
     return {
       event,
       site,
       campaign,
       stat,
       report,
+      schedule,
       setting: {
         card: true,
         email: true,
@@ -18,17 +27,6 @@ export class SiteCampaignFactory {
         site: true,
         user: true,
       },
-
-      schedule: {
-        id: faker.string.uuid(),
-        type: faker.helpers.arrayElement(['PERIOD', 'ONE-OFF', 'PERIOD-NO-DEADLINE']),
-        start_at: '11:00',
-        end_at: '11:00',
-        send_at: '11:00',
-        default_time: '11:00',
-        weekday_interval: [0, 1, 3, 4, 7],
-        is_duplicated: false,
-      },
       audience: {
         id: faker.string.uuid(),
         type: faker.helpers.arrayElement(['AUDIENCE-PRESET', 'CAMPAIGN-PRESET']),
@@ -37,7 +35,6 @@ export class SiteCampaignFactory {
         condition: 'some condition',
         count: 0,
       },
-
       creatives: [
         {
           id: faker.string.uuid(),

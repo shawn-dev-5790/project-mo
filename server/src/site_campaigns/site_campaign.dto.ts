@@ -53,7 +53,7 @@ export class SiteCampaignRes {
       id: string
       goal_type: string
       goal_unit: string
-      goal_value: number
+      goal_value: string
     }
     // why
     report: {
