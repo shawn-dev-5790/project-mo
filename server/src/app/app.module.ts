@@ -12,6 +12,7 @@ import { ReportModule } from 'src/reports/report.module'
 import { ScheduleModule } from 'src/schedules/schedule.module'
 import { AudienceModule } from 'src/audiences/audience.module'
 import { CreativeMoudle } from 'src/creatives/creative.module'
+import { SiteSettingModule } from 'src/site_settings/site_setting.module'
 
 @Module({
   imports: [
@@ -24,6 +25,7 @@ import { CreativeMoudle } from 'src/creatives/creative.module'
     ScheduleModule,
     AudienceModule,
     CreativeMoudle,
+    SiteSettingModule,
     ProductModule,
     LinkedProductModule,
   ],

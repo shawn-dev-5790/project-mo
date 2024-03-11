@@ -2,6 +2,7 @@ import { SiteCampaignRes } from './site_campaign.dto'
 
 export class SiteCampaignFactory {
   generate(
+    setting: SiteCampaignRes['data']['setting'], // 사이트 설정 상태
     event: SiteCampaignRes['data']['event'], // 캠페인을 발동 시키는 트리거 이벤트
     site: SiteCampaignRes['data']['site'], // 사이트 정보
     campaign: SiteCampaignRes['data']['campaign'], // 캠페인 정보
@@ -12,6 +13,7 @@ export class SiteCampaignFactory {
     creatives: SiteCampaignRes['data']['creatives'], // 캠페인으로 동작하는 소재목록
   ) {
     return {
+      setting,
       event,
       site,
       campaign,
@@ -20,16 +22,6 @@ export class SiteCampaignFactory {
       schedule,
       audience,
       creatives,
-      setting: {
-        card: true,
-        email: true,
-        lms: true,
-        firendtalk: true,
-        alimtalk: true,
-        banner: true,
-        site: true,
-        user: true,
-      },
     }
   }
 }
