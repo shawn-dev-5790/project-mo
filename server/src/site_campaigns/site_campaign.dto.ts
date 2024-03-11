@@ -61,7 +61,7 @@ export class SiteCampaignRes {
       name: string
       desc: string
       status: string
-      tags: string[]
+      tags: Array<string>
       created_at: string
       updated_at: string
       deleted_at: string
@@ -74,7 +74,7 @@ export class SiteCampaignRes {
       end_at: string
       send_at: string
       default_time: string
-      weekday_interval: number[]
+      weekday_interval: Array<number>
       is_duplicated: boolean
     }
     // who
@@ -87,16 +87,14 @@ export class SiteCampaignRes {
       count: number
     }
     // what
-    creatives: [
-      {
-        id: string
-        type: string
-        name: string
-        desc: string
-        created_at: string
-        updated_at: string
-        deleted_at: string
-      },
-    ]
+    creatives: Array<{
+      id: string
+      type: string
+      name: string
+      desc: string
+      created_at: string
+      updated_at: string
+      deleted_at: string
+    }>
   }
 }

@@ -11,6 +11,7 @@ import { StatModule } from 'src/stats/stat.moudle'
 import { ReportModule } from 'src/reports/report.module'
 import { ScheduleModule } from 'src/schedules/schedule.module'
 import { AudienceModule } from 'src/audiences/audience.module'
+import { CreativeMoudle } from 'src/creatives/creative.module'
 
 @Module({
   imports: [
@@ -22,6 +23,7 @@ import { AudienceModule } from 'src/audiences/audience.module'
     ReportModule,
     ScheduleModule,
     AudienceModule,
+    CreativeMoudle,
     ProductModule,
     LinkedProductModule,
   ],
