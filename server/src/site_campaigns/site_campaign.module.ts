@@ -8,6 +8,7 @@ import { CampaignFactory } from 'src/campaigns/campaign.factory'
 import { StatFactory } from 'src/stats/stat.factory'
 import { ReportFactory } from 'src/reports/report.factory'
 import { ScheduleFactory } from 'src/schedules/schedule.factory'
+import { AudienceFactory } from 'src/audiences/audience.factory'
 
 @Module({
   controllers: [SiteCampaignController],
@@ -20,6 +21,7 @@ import { ScheduleFactory } from 'src/schedules/schedule.factory'
     StatFactory,
     ReportFactory,
     ScheduleFactory,
+    AudienceFactory,
   ],
 })
 export class SiteCampaignModule {}

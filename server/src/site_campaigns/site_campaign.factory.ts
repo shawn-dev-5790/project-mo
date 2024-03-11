@@ -9,6 +9,7 @@ export class SiteCampaignFactory {
     stat: SiteCampaignRes['data']['stat'],
     report: SiteCampaignRes['data']['report'],
     schedule: SiteCampaignRes['data']['schedule'],
+    audience: SiteCampaignRes['data']['audience'],
   ) {
     return {
       event,
@@ -17,6 +18,7 @@ export class SiteCampaignFactory {
       stat,
       report,
       schedule,
+      audience,
       setting: {
         card: true,
         email: true,
@@ -26,14 +28,6 @@ export class SiteCampaignFactory {
         banner: true,
         site: true,
         user: true,
-      },
-      audience: {
-        id: faker.string.uuid(),
-        type: faker.helpers.arrayElement(['AUDIENCE-PRESET', 'CAMPAIGN-PRESET']),
-        name: faker.lorem.sentence(),
-        desc: faker.lorem.sentence(),
-        condition: 'some condition',
-        count: 0,
       },
       creatives: [
         {

@@ -10,6 +10,7 @@ import { SiteModule } from 'src/sites/site.module'
 import { StatModule } from 'src/stats/stat.moudle'
 import { ReportModule } from 'src/reports/report.module'
 import { ScheduleModule } from 'src/schedules/schedule.module'
+import { AudienceModule } from 'src/audiences/audience.module'
 
 @Module({
   imports: [
@@ -20,6 +21,7 @@ import { ScheduleModule } from 'src/schedules/schedule.module'
     StatModule,
     ReportModule,
     ScheduleModule,
+    AudienceModule,
     ProductModule,
     LinkedProductModule,
   ],

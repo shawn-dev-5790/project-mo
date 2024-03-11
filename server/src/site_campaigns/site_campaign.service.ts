@@ -6,6 +6,7 @@ import { CampaignFactory } from 'src/campaigns/campaign.factory'
 import { StatFactory } from 'src/stats/stat.factory'
 import { ReportFactory } from 'src/reports/report.factory'
 import { ScheduleFactory } from 'src/schedules/schedule.factory'
+import { AudienceFactory } from 'src/audiences/audience.factory'
 
 @Injectable()
 export class SiteCampaignsService {
@@ -17,6 +18,7 @@ export class SiteCampaignsService {
     private readonly statFactory: StatFactory,
     private readonly reportFactory: ReportFactory,
     private readonly scheduleFactory: ScheduleFactory,
+    private readonly audienceFactory: AudienceFactory,
   ) {}
 
   generate() {
@@ -27,6 +29,7 @@ export class SiteCampaignsService {
       this.statFactory.generate(),
       this.reportFactory.generate(),
       this.scheduleFactory.generate(),
+      this.audienceFactory.generate(),
     )
   }
 }
