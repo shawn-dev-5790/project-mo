@@ -3,6 +3,7 @@ const ROUTE_SITE_MAPS: Array<IRouteSiteMap> = [
   { name: 'users', path: '/users' },
   { name: 'gallery', path: '/gallery' },
   { name: 'layout', path: '/layout' },
+  { name: 'campaign', path: '/campaign' },
 ]
 
 export default ROUTE_SITE_MAPS

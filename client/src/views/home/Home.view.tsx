@@ -7,7 +7,7 @@ import {
   AppProtectorForSiteId,
   AppProtectorForCampaignId,
   AppProtectorForView,
-} from '../../_core_/adaptor/components/AppProtector'
+} from '../../_core_/adaptor/react/AppProtector'
 
 const HomeView: React.FC = () => {
   return (

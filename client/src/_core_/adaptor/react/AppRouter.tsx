@@ -4,6 +4,7 @@ import UsersView from '../../../views/users/Users.view'
 import RouteManager from '../managers/route/Route.manager'
 import GalleryView from '../../../views/gallery/Gallery.view'
 import LayoutView from '../../../views/layout/Layout.view'
+import CampaignView from '../../../views/campaign/Campaign.view'
 
 export const AppRouter: React.FC = () => {
   return (
@@ -17,6 +18,7 @@ export const AppRouter: React.FC = () => {
         <Route path="" element={<AppRouteErrorMessage code="404" />} />
         <Route path=":galleryId" element={<GalleryView />} />
       </Route>
+      <Route path="/campaign" element={<CampaignView />} />
       <Route path="/" element={<HomeView />} />
       <Route path="*" element={<AppRouteErrorMessage code="404" />} />
     </Routes>

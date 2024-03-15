@@ -9,7 +9,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 
 import NetworkManager from './_core_/adaptor/managers/network/Network.manager'
 import { BrowserRouter } from 'react-router-dom'
-import { AppRouter } from './_core_/adaptor/components/AppRouter'
+import { AppRouter } from './_core_/adaptor/react/AppRouter'
 
 const queryClient = new QueryClient(NetworkManager.QUERY_CLIENT_CONFIG)
 
