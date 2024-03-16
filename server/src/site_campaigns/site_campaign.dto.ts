@@ -41,7 +41,7 @@ export class SiteCampaignRes {
     // why
     event: {
       id: string
-      tpye: string
+      type: string
       name: string
       cont: string
       created_at: string

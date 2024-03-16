@@ -1,0 +1,11 @@
+.wrap {
+  height: 100%;
+  background-color: var(var(--black_100));
+}
+.head {
+  background-color: var(--black_400);
+}
+.body {
+  overflow: auto;
+  height: 100%;
+}

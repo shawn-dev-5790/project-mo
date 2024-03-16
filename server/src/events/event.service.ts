@@ -8,4 +8,8 @@ export class EventService {
   generate() {
     return this.eventFactory.generate()
   }
+
+  generateMany(size: number, page: number, lang: string) {
+    return this.eventFactory.generateMany(size, page, lang)
+  }
 }

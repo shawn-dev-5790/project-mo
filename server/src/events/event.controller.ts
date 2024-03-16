@@ -1,4 +1,4 @@
-import { Controller, Get } from '@nestjs/common'
+import { Controller, Get, Query } from '@nestjs/common'
 import { EventService } from './event.service'
 
 @Controller('events')
@@ -13,6 +13,15 @@ export class EventController {
       data: {
         event: this.eventService.generate(),
       },
+    }
+  }
+
+  @Get('/getnrateMany')
+  generateMany(@Query('size') size: string, @Query('page') page: string, @Query('lang') lang: string) {
+    return {
+      code: '0000',
+      message: 'success',
+      data: this.eventService.generateMany(Number(size), Number(page), lang),
     }
   }
 }

@@ -1,43 +1,19 @@
-import { useReadUser } from '../../_core_/adaptor/managers/network/endpoints/getUser'
-import { useReadUsers } from '../../_core_/adaptor/managers/network/endpoints/getUsers'
-import {
-  AppProtectorForPermission,
-  AppProtectorForDivice,
-  AppProtectorForLegion,
-  AppProtectorForSiteId,
-  AppProtectorForCampaignId,
-  AppProtectorForView,
-} from '../../_core_/adaptor/react/AppProtector'
+import css from './Home.view.module.css'
+import { HomeEventList } from './components/HomeEventList'
 
 const HomeView: React.FC = () => {
-  return (
-    <AppProtectorForPermission>
-      <AppProtectorForDivice>
-        <AppProtectorForLegion>
-          <AppProtectorForSiteId>
-            <AppProtectorForCampaignId>
-              <AppProtectorForView>
-                <Content />
-              </AppProtectorForView>
-            </AppProtectorForCampaignId>
-          </AppProtectorForSiteId>
-        </AppProtectorForLegion>
-      </AppProtectorForDivice>
-    </AppProtectorForPermission>
-  )
+  return <Content />
 }
 
 export default HomeView
 
 const Content: React.FC = () => {
-  const { data: user } = useReadUser({ path: { userId: 1 } })
-  const { data: users } = useReadUsers({ query: { page: 1 } })
-
   return (
-    <div>
-      <h1>Home Template Layout</h1>
-      <pre>{JSON.stringify(user, null, 2)}</pre>
-      <pre>{JSON.stringify(users, null, 2)}</pre>
+    <div className={css.wrap}>
+      <h1 className={css.head}>{/* view.home */}</h1>
+      <div className={css.body}>
+        <HomeEventList />
+      </div>
     </div>
   )
 }
