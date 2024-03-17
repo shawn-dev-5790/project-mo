@@ -1,20 +1,25 @@
-export interface IEventEntity {
+import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm'
+
+@Entity()
+export class EventEntity {
+  @PrimaryGeneratedColumn('uuid')
   id: string
-  tpye: string
+
+  @Column()
+  type: string
+
+  @Column()
   name: string
+
+  @Column()
   cont: string
-  created_at: string
-  updated_at: string
-  deleted_at: string
-}
 
-export default class EventEntity {
-  constructor(public data: IEventEntity) {}
+  @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
+  created_at: Date
 
-  toJSON(): IEventEntity {
-    return this.data
-  }
-  validate(): boolean {
-    return true
-  }
+  @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP', onUpdate: 'CURRENT_TIMESTAMP' })
+  updated_at: Date
+
+  @Column({ type: 'timestamp', nullable: true })
+  deleted_at: Date | null
 }

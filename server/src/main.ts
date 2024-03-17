@@ -1,8 +1,13 @@
+import * as dotenv from 'dotenv'
+dotenv.config({ path: '.env.development.local' })
+
 import { NestFactory } from '@nestjs/core'
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger'
 import { AppModule } from './app/app.module'
 
 async function bootstrap() {
+  // load env
+
   // create nest app
   const app = await NestFactory.create(AppModule)
 
