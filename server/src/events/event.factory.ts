@@ -15,7 +15,7 @@ const dummy = (faker) =>
   }))
 
 export class EventFactory {
-  generate() {
+  generateEvent() {
     return {
       id: faker.string.uuid(),
       type: faker.helpers.arrayElement(['WEATHER', 'NEWS', 'HOILYDAY']),

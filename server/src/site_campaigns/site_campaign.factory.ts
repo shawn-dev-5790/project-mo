@@ -3,7 +3,6 @@ import { SiteCampaignRes } from './site_campaign.dto'
 export class SiteCampaignFactory {
   generate(
     setting: SiteCampaignRes['data']['setting'], // 사이트 설정 상태
-    event: SiteCampaignRes['data']['event'], // 캠페인을 발동 시키는 트리거 이벤트
     site: SiteCampaignRes['data']['site'], // 사이트 정보
     campaign: SiteCampaignRes['data']['campaign'], // 캠페인 정보
     stat: SiteCampaignRes['data']['stat'], // 캠페인 통계 지표
@@ -14,7 +13,6 @@ export class SiteCampaignFactory {
   ) {
     return {
       setting,
-      event,
       site,
       campaign,
       stat,

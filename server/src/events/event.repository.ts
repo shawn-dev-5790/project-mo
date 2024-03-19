@@ -1,23 +1,18 @@
 import { Repository } from 'typeorm'
 import { EventEntity } from './event.entity'
-import { CreateEventDTO, UpdateEventDTO } from './event.dto'
+import { CreateEventReqDto } from './event.dto'
 
 export class EventRepository extends Repository<EventEntity> {
-  async createEvent(eventData: CreateEventDTO): Promise<EventEntity> {
-    const event = this.create(eventData)
+  async createEvent(dto: CreateEventReqDto): Promise<EventEntity> {
+    const event = this.create(dto)
     return this.save(event)
   }
 
-  async updateEvent(id: string, eventData: UpdateEventDTO): Promise<EventEntity | undefined> {
-    const event = await this.findOne({ where: { id } })
-    if (!event) {
-      return undefined
-    }
-
-    Object.assign(event, eventData)
-
-    return this.save(event)
-  }
+  // async updateEvent(id: string, eventData: UpdateEventDTO): Promise<EventEntity | undefined> {
+  //   const event = await this.findOne({ where: { id } })
+  //   if (!event) return undefined
+  //   return this.save({ ...event, ...eventData })
+  // }
 
   async deleteEvent(id: string): Promise<void> {
     await this.softDelete(id)
