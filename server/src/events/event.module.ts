@@ -4,11 +4,12 @@ import { EventController } from './event.controller'
 import { EventRepository } from './event.repository'
 import { EventService } from './event.service'
 import { EventEntity } from './event.entity'
+import { EventFactory } from './event.factory'
 
 @Module({
   imports: [TypeOrmModule.forFeature([EventEntity, EventRepository])],
   controllers: [EventController],
-  providers: [EventService],
+  providers: [EventService, EventFactory],
   exports: [EventService],
 })
 export class EventModule {}

@@ -2,15 +2,24 @@ import * as dotenv from 'dotenv'
 dotenv.config({ path: '.env.development.local' })
 
 import { NestFactory } from '@nestjs/core'
+import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger'
 import { AppModule } from './app/app.module'
-import { setupSwagger } from './_core_/util/enableSwagger'
 
 async function bootstrap() {
   // create nest app
   const app = await NestFactory.create(AppModule)
 
   // setup - api document
-  setupSwagger(app)
+  const documentOptions = new DocumentBuilder()
+    .setTitle('Nest App API')
+    .setDescription('Nest App API description')
+    .setVersion('0.1')
+    .addTag('API')
+    .build()
+  const document = SwaggerModule.createDocument(app, documentOptions)
+  const swaggerOptions = { defaultModelExpandDepth: 5, defaultModelsExpandDepth: 5 }
+
+  SwaggerModule.setup('docs', app, document, { swaggerOptions })
 
   // setup - middlewares
   app.enableCors()

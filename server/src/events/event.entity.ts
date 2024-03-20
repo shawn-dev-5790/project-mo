@@ -1,4 +1,4 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm'
+import { Entity, Column, PrimaryGeneratedColumn, DeleteDateColumn } from 'typeorm'
 
 @Entity({ name: 'event' })
 export class EventEntity {
@@ -20,6 +20,6 @@ export class EventEntity {
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP', onUpdate: 'CURRENT_TIMESTAMP' })
   updated_at: Date
 
-  @Column({ type: 'timestamp', nullable: true })
+  @DeleteDateColumn({ type: 'timestamp', nullable: true })
   deleted_at: Date | null
 }

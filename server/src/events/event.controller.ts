@@ -1,54 +1,98 @@
 // event.controller.ts
 
-import { Controller, Get, Post, Delete, Param, Body } from '@nestjs/common'
+import { Controller, Get, Post, Delete, Param, Body, Query, NotFoundException, Patch } from '@nestjs/common'
 import { EventService } from './event.service'
-import { EventEntity } from './event.entity'
-import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger'
-import { CreateEventReqDto, CreateEventResDto } from './event.dto'
+import { ApiOperation, ApiParam, ApiQuery, ApiResponse, ApiTags } from '@nestjs/swagger'
+import {
+  ResEventDetailDto,
+  ResEventListDto,
+  EventQueryParamDto,
+  BodyForCreateEventDto,
+  BodyForUpdateEventDto,
+} from './event.dto'
 
 @ApiTags('events')
 @Controller('events')
 export class EventController {
   constructor(private readonly eventService: EventService) {}
 
+  @Get()
+  @ApiOperation({ summary: 'Get all events' })
+  @ApiResponse({ status: 200, type: ResEventListDto, description: 'Get all events' })
+  @ApiQuery({ name: 'size', type: 'number', example: 10 })
+  @ApiQuery({ name: 'page', type: 'number', example: 1 })
+  async findAllEvents(
+    @Query('page') reqPage: EventQueryParamDto['page'],
+    @Query('size') reqSize: EventQueryParamDto['size'],
+  ): Promise<ResEventListDto> {
+    const events = await this.eventService.findAllEvents()
+    const total = events.length
+    const page = Number(reqPage)
+    const size = Number(reqSize)
+
+    return { code: '0000', message: 'success', data: { total, page, size, events } }
+  }
+
+  @Get('generate')
+  @ApiOperation({ summary: 'Generate events' })
+  @ApiQuery({ name: 'size', type: 'number', example: 10 })
+  async generateEvents(@Query('size') reqSize: EventQueryParamDto['size']): Promise<ResEventListDto> {
+    reqSize ? await this.eventService.generateEvents(Number(reqSize)) : await this.eventService.generateEvent()
+    return await this.findAllEvents(1, 10)
+  }
+
+  @Get(':event_id')
+  @ApiOperation({ summary: 'Get event by id' })
+  @ApiResponse({ status: 200, type: ResEventDetailDto, description: 'Get event by id' })
+  @ApiResponse({ status: 404, description: 'Event not found' })
+  @ApiParam({ name: 'event_id', type: 'string', example: 'b7f79334-15e1-483b-ac3a-9a1de56b88e5' })
+  async getEventById(@Param('event_id') id: EventQueryParamDto['id']): Promise<ResEventDetailDto> {
+    const event = await this.eventService.getEventById(id)
+
+    if (!event) throw new NotFoundException('Event not found')
+
+    return { code: '0000', message: 'success', data: { event } }
+  }
+
   @Post()
   @ApiOperation({ summary: 'Create event' })
-  @ApiResponse({ status: 201, type: CreateEventResDto, description: 'The event has been successfully created.' })
-  async createEvent(@Body() req: CreateEventReqDto): Promise<CreateEventResDto> {
-    return {
-      code: '0000',
-      message: 'success',
-      data: { event: await this.eventService.createEvent(req) },
-    }
+  @ApiResponse({ status: 201, type: ResEventDetailDto, description: 'The event has been successfully created.' })
+  async createEvent(@Body() body: BodyForCreateEventDto): Promise<ResEventDetailDto> {
+    const event = await this.eventService.createEvent(body)
+
+    return { code: '0000', message: 'success', data: { event } }
   }
 
-  // @Put(':id')
-  // async updateEvent(@Param('id') id: string, @Body() eventData: UpdateEventDTO): Promise<EventEntity | undefined> {
-  //   return this.eventService.updateEvent(id, eventData)
-  // }
+  @Patch(':event_id')
+  @ApiOperation({ summary: 'Update event' })
+  @ApiResponse({ status: 204, type: ResEventDetailDto, description: 'The event has been successfully updated.' })
+  @ApiResponse({ status: 404, description: 'Event not found' })
+  @ApiParam({ name: 'event_id', type: 'string', example: 'b7f79334-15e1-483b-ac3a-9a1de56b88e5' })
+  async updateEvent(
+    @Param('event_id') id: EventQueryParamDto['id'],
+    @Body() body: BodyForUpdateEventDto,
+  ): Promise<ResEventDetailDto> {
+    const event = await this.eventService.getEventById(id)
 
-  @Delete(':id')
-  async deleteEvent(@Param('id') id: string): Promise<void> {
-    return this.eventService.deleteEvent(id)
+    if (!event) throw new NotFoundException('Event not found')
+
+    const eventToUpdate = await this.eventService.updateEvent(id, body)
+
+    return { code: '0000', message: 'success', data: { event: eventToUpdate } }
   }
 
-  @Get()
-  async findAllEvents(): Promise<EventEntity[]> {
-    return this.eventService.findAllEvents()
-  }
+  @Delete(':event_id')
+  @ApiOperation({ summary: 'Delete event' })
+  @ApiResponse({ status: 204, type: ResEventDetailDto, description: 'The event has been successfully deleted.' })
+  @ApiResponse({ status: 404, description: 'Event not found' })
+  @ApiParam({ name: 'event_id', type: 'string', example: 'b7f79334-15e1-483b-ac3a-9a1de56b88e5' })
+  async deleteEvent(@Param('event_id') id: EventQueryParamDto['id']): Promise<ResEventDetailDto> {
+    const event = await this.eventService.getEventById(id)
 
-  @Get('type/:type')
-  async findEventsByType(@Param('type') type: string): Promise<EventEntity[]> {
-    return this.eventService.findEventsByType(type)
-  }
+    if (!event) throw new NotFoundException('Event not found')
 
-  @Get('createdAfter/:date')
-  async findEventsCreatedAfter(@Param('date') date: string): Promise<EventEntity[]> {
-    return this.eventService.findEventsCreatedAfter(new Date(date))
-  }
+    await this.eventService.deleteEvent(id)
 
-  @Get(':id')
-  async getEventById(@Param('id') id: string): Promise<EventEntity | undefined> {
-    return this.eventService.getEventById(id)
+    return { code: '0000', message: 'success', data: { event } }
   }
 }

@@ -1,7 +1,9 @@
-import { ApiProperty, PartialType, PickType } from '@nestjs/swagger'
+import { ApiProperty, IntersectionType, PartialType, PickType } from '@nestjs/swagger'
 import { EventEntity } from './event.entity'
+import { BasePageDto, BaseResDto } from 'src/_core_/dto/base.dto'
 
-export class EventDto implements EventEntity {
+// entity > dto
+export class EventDto extends EventEntity {
   @ApiProperty({ example: '1234-5678-1234-5678', description: 'event id' })
   id: string
 
@@ -24,30 +26,33 @@ export class EventDto implements EventEntity {
   deleted_at: Date
 }
 
-export class EventDataDto {
-  @ApiProperty({ type: EventDto, description: 'data.event' })
+// response
+export class DataForEventDetailDto {
+  @ApiProperty({ type: EventDto })
   event: EventDto
-
-  @ApiProperty({ type: [EventDto], isArray: true, description: 'data.events' })
+}
+export class DataForEventListDto extends BasePageDto {
+  @ApiProperty({ type: [EventDto] })
   events: EventDto[]
 }
 
-export class EventResDto {
-  @ApiProperty({ example: '0000', description: 'res.code' })
-  code: string
-
-  @ApiProperty({ example: 'success', description: 'res.message' })
-  message: string
-
-  @ApiProperty({ type: EventDataDto, description: 'res.data' })
-  data: EventDataDto
+// response
+export class ResEventDetailDto extends BaseResDto {
+  @ApiProperty({ type: DataForEventDetailDto })
+  data: DataForEventDetailDto
+}
+export class ResEventListDto extends BaseResDto {
+  @ApiProperty({ type: DataForEventListDto })
+  data: DataForEventListDto
 }
 
-export class CreateEventDto extends PickType(EventDto, ['type', 'name', 'cont'] as const) {}
-export class UpdateEventDto extends PartialType(CreateEventDto) {}
-
-export class CreateEventReqDto extends CreateEventDto {}
-export class CreateEventResDto extends EventResDto {}
-
-export class UpdateEventReqDto extends UpdateEventDto {}
-export class UpdateEventResDto extends EventResDto {}
+// request
+export class EventQueryParamDto extends IntersectionType(
+  PickType(BasePageDto, ['page', 'size'] as const),
+  PickType(EventDto, ['id'] as const),
+) {}
+export class BodyForCreateEventDto extends PickType(EventDto, ['type', 'name', 'cont'] as const) {}
+export class BodyForUpdateEventDto extends IntersectionType(
+  PickType(EventDto, ['name'] as const),
+  PartialType(PickType(EventDto, ['cont'] as const)),
+) {}

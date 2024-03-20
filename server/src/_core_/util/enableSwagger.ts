@@ -13,8 +13,8 @@ export function setupSwagger(app: INestApplication): void {
 
   SwaggerModule.setup('docs', app, document, {
     swaggerOptions: {
-      defaultModelExpandDepth: 2,
-      defaultModelsExpandDepth: 2,
+      defaultModelExpandDepth: 5,
+      defaultModelsExpandDepth: 5,
     },
   })
 }
