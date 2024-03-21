@@ -1,10 +1,10 @@
-import { fakerKO as faker } from '@faker-js/faker'
+import { Dummy } from 'src/_core_/util/dummy/Dummy'
 
 export class ScheduleFactory {
   generate() {
     return {
-      id: faker.string.uuid(),
-      type: faker.helpers.arrayElement(['PERIOD', 'ONE-OFF', 'PERIOD-NO-DEADLINE']),
+      id: Dummy.id(),
+      type: Dummy.pickOne(['PERIOD', 'ONE-OFF', 'PERIOD-NO-DEADLINE']),
       start_at: '11:00',
       end_at: '11:00',
       send_at: '11:00',

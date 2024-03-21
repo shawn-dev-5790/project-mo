@@ -1,15 +1,15 @@
-import { fakerEN as faker } from '@faker-js/faker'
+import { Dummy } from 'src/_core_/util/dummy/Dummy'
 import { EventEntity } from './event.entity'
 
 export class EventFactory {
   generateEvent(): EventEntity {
     return {
-      id: faker.string.uuid(),
-      type: faker.helpers.arrayElement(['WEATHER', 'NEWS', 'HOILYDAY']),
-      name: faker.lorem.sentence(),
-      cont: faker.lorem.sentence(),
-      created_at: faker.date.past(),
-      updated_at: faker.date.past(),
+      id: Dummy.id(),
+      type: Dummy.pickOne(['WEATHER', 'NEWS', 'HOILYDAY']),
+      name: Dummy.txt('name'),
+      cont: Dummy.txt('cont'),
+      created_at: Dummy.date(),
+      updated_at: Dummy.date(),
       deleted_at: null,
     }
   }

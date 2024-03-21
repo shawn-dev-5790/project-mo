@@ -1,12 +1,12 @@
-import { fakerKO as faker } from '@faker-js/faker'
+import { Dummy } from 'src/_core_/util/dummy/Dummy'
 
 export class AudienceFactory {
   generate() {
     return {
-      id: faker.string.uuid(),
-      type: faker.helpers.arrayElement(['AUDIENCE-PRESET', 'CAMPAIGN-PRESET']),
-      name: faker.lorem.sentence(),
-      desc: faker.lorem.sentence(),
+      id: Dummy.id(),
+      type: Dummy.pickOne(['AUDIENCE-PRESET', 'CAMPAIGN-PRESET']),
+      name: Dummy.txt('name'),
+      desc: Dummy.txt('desc'),
       condition: 'some condition',
       count: 0,
     }

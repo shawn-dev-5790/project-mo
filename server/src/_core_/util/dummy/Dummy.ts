@@ -1,0 +1,30 @@
+export class Dummy {
+  static id() {
+    return 'uuid-1'
+  }
+
+  static txt(prefix: string) {
+    return prefix + 'txt-1'
+  }
+
+  static int(min: number, max: number) {
+    return Math.floor(Math.random() * (max - min + 1)) + min
+  }
+  static float(min: number, max: number, fixed: number) {
+    return (Math.floor(Math.random() * (max - min + 1)) + min) * (fixed || 0.01)
+  }
+
+  static date() {
+    return new Date()
+  }
+
+  static pickOne(arr: any[]) {
+    return arr[Math.floor(Math.random() * arr.length)]
+  }
+
+  static pickSome(arr: any[], size: number) {
+    if (size > arr.length - 1) return arr
+
+    return arr.sort(() => 0.5 - Math.random()).slice(0, size)
+  }
+}

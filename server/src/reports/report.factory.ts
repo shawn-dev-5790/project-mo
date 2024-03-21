@@ -1,16 +1,16 @@
-import { fakerKO as faker } from '@faker-js/faker'
+import { Dummy } from 'src/_core_/util/dummy/Dummy'
 
 export class ReportFactory {
   generate() {
     return {
-      id: faker.string.uuid(),
-      name: faker.lorem.sentence(),
-      desc: faker.lorem.sentence(),
-      status: faker.helpers.arrayElement(['NEW', 'READ', 'NEW-READ']),
-      tags: faker.lorem.words(5).split(' '),
-      created_at: faker.date.past().toISOString(),
-      updated_at: '',
-      deleted_at: '',
+      id: Dummy.id(),
+      name: Dummy.txt('name'),
+      desc: Dummy.txt('desc'),
+      status: Dummy.pickOne(['ON', 'OFF', 'DRAFT', 'READY', 'REMOVED']),
+      tags: Array.from({ length: 3 }, (_, i) => Dummy.txt('tag' + i)),
+      created_at: Dummy.date().toISOString(),
+      updated_at: Dummy.date().toISOString(),
+      deleted_at: null,
     }
   }
 }
