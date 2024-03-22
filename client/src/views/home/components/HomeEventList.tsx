@@ -1,57 +1,45 @@
 import css from './HomeEventList.module.css'
 
 import { Link } from 'react-router-dom'
-import { useGetEvents } from '../../../_core_/adaptor/managers/network/endpoints/getEvents'
 import { appDateManager } from '../../../_core_/adaptor/managers/date/DateManager'
-import { useEffect, useState } from 'react'
 import { AppAsync } from '../../../_core_/adaptor/react/AppAsync'
 import { AppFallbackError, AppFallbackLoading } from '../../../_core_/adaptor/react/AppFallback'
+import { useGetAllEvents } from '../../../_core_/adaptor/managers/network/endpoints/events/getAllEvents'
 
 appDateManager.setLocale('en')
 appDateManager.setTimezone('Asia/Seoul')
 
 export const HomeEventList: React.FC = () => {
-  const [page, setPage] = useState<number>(1)
-  const [hasNext, setHasNext] = useState<boolean>(false)
-
   return (
     <div className={css.wrap}>
       <h3 className={css.head}>Main Event</h3>
       <ul className={css.body}>
-        {Array.from({ length: page }).map((_, i) => (
+        {Array.from({ length: 1 }).map((_, i) => (
           <AppAsync
             key={i}
             onError={<AppFallbackError />}
             onLoad={<AppFallbackLoading />}
-            children={<EventCards page={i + 1} setHasNext={setHasNext} />}
+            children={<EventCards page={1} />}
           />
         ))}
-        {hasNext && <LoadMore />}
+        {/* {hasNext && <LoadMore />} */}
       </ul>
     </div>
   )
-  function LoadMore() {
-    return (
-      <li>
-        <div className={css.wrap_event_card}>
-          <button onClick={() => setPage((prev) => prev + 1)}>Load More</button>
-        </div>
-      </li>
-    )
-  }
+  // function LoadMore() {
+  //   return (
+  //     <li>
+  //       <div className={css.wrap_event_card}>
+  //         <button onClick={() => setPage((prev) => prev + 1)}>Load More</button>
+  //       </div>
+  //     </li>
+  //   )
+  // }
 }
 
-const EventCards: React.FC<{ page: number; setHasNext: React.Dispatch<React.SetStateAction<boolean>> }> = (props) => {
-  const { data: eventsRes = null } = useGetEvents({
-    query: { lang: appDateManager.locale, page: props.page, size: 10 },
-  })
-  const events = eventsRes?.data.events || []
-  const eventsPage = eventsRes?.data.events_page || { total: 0, size: 0, page: 0 }
-  const hasMore = !!eventsRes && eventsPage.total > eventsPage.size * eventsPage.page
-
-  useEffect(() => {
-    props.setHasNext(hasMore)
-  }, [hasMore, props])
+const EventCards: React.FC<{ page: number }> = ({ page }) => {
+  const { data: allEentsRes = null } = useGetAllEvents({ page, size: 10 })
+  const events = allEentsRes?.data.events || []
 
   return (
     <>

@@ -23,7 +23,7 @@ export class EventDto extends EventEntity {
   updated_at: Date
 
   @ApiProperty({ example: '2021-08-08T00:00:00.000Z', description: 'deleted date' })
-  deleted_at: Date
+  deleted_at: Date | null
 }
 
 // response
