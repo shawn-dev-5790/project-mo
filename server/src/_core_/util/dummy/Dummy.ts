@@ -1,6 +1,7 @@
+import { v4 as uuidv4 } from 'uuid'
 export class Dummy {
   static id() {
-    return 'uuid-1'
+    return uuidv4()
   }
 
   static txt(prefix: string) {
