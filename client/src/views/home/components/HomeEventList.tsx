@@ -10,7 +10,7 @@ import {
   useGetAllEvents,
   useGetEventById,
   useUpdateEvent,
-} from '../../../_core_/adaptor/request/RequestManager.hook.events'
+} from '../../../_core_/adaptor/request/RequestManager._hook_.events'
 
 appDateManager.setLocale('en')
 appDateManager.setTimezone('Asia/Seoul')
