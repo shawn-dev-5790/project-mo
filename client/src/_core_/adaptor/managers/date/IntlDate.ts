@@ -120,17 +120,17 @@ export default class IntlDate implements AbsAppDate {
    * @returns {Record<TFormat, string>} 포맷팅된 날짜 문자열입니다.
    */
   format(): Record<TFormat, string> {
-    const { year, month, day, hour, minute, second, timezoneName, localeMonthShort, localeWeekdayLong } = this.parse()
+    const { year, month, day, hour, minute, second, timezoneName, localeMonthShort, localeWeekdayShort } = this.parse()
     // prettier-ignore
     return {
         'HH:mm':                   `${hour}:${minute}`,
-        'MMM dd, yyyy EEE HH:mm O':`${localeMonthShort} ${day}, ${year} ${localeWeekdayLong} ${hour}:${minute} (${timezoneName})`,
+        'MMM dd, yyyy HH:mm EEE O':`${localeMonthShort} ${day}, ${year} ${hour}:${minute} ${localeWeekdayShort} (${timezoneName})`,
         'MMM dd, yyyy HH:mm':      `${localeMonthShort} ${day}, ${year} ${hour}:${minute}`,
         'MMM dd, yyyy':            `${localeMonthShort} ${day}, ${year}`,
         'yyyy-MM-dd':              `${year}-${month}-${day}`,
         'yyyy.MM.dd':              `${year}.${month}.${day}`,
         'yyyy.MM.dd HH:mm':        `${year}.${month}.${day} ${hour}:${minute}`,
-        'yyyy.MM.dd EEE HH:mm:ss': `${year}.${month}.${day} ${localeWeekdayLong} ${hour}:${minute}:${second}`,
+        'yyyy.MM.dd EEE HH:mm:ss': `${year}.${month}.${day} ${localeWeekdayShort} ${hour}:${minute}:${second}`,
     }
   }
 }

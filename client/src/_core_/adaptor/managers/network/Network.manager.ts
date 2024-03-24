@@ -3,19 +3,23 @@ import axios, { AxiosRequestConfig, AxiosResponse } from 'axios'
 
 class NetworkManager {
   private static readonly instance: NetworkManager = new NetworkManager()
+
   private constructor() {
     if (NetworkManager.instance) throw new Error('싱글톤 클래스입니다. getInstance 메소드를 사용하세요')
   }
+
   public static getInstance(): NetworkManager {
     return NetworkManager.instance
   }
+
   public get AXIOS_CONFIG(): AxiosRequestConfig {
     return {
       // withCredentials: true,
-      baseURL: '/',
+      baseURL: 'http://localhost:3000',
       headers: { 'Content-Type': 'application/json' },
     }
   }
+
   public get QUERY_CLIENT_CONFIG(): QueryClientConfig {
     return {
       defaultOptions: {
@@ -30,8 +34,10 @@ class NetworkManager {
    * @param {Partial<AxiosRequestConfig>} req - axios 요청 설정
    * @returns {AxiosInstance} 인터셉터가 설정된 axios 인스턴스
    */
-  public request<Req, Res>(req: Partial<AxiosRequestConfig<Req>>): Promise<AxiosResponse<Res, unknown>> {
-    const config = { ...this.AXIOS_CONFIG, ...req }
+  public request<Req, Res>(req: AxiosRequestConfig<Req>): Promise<AxiosResponse<Res>> {
+    const config: AxiosRequestConfig = { ...this.AXIOS_CONFIG, ...req }
+
+    console.log(config)
 
     // create request instance
     const instance = axios.create(config)
@@ -49,8 +55,10 @@ class NetworkManager {
     )
 
     // return request instance
-    return instance(config)
+    return instance({ ...config })
   }
+
+  // AxiosInstance<any, AxiosResponse<any, any>, any>(config: AxiosRequestConfig<any>) => Promise<AxiosResponse<any, any>>
 }
 
 export default NetworkManager.getInstance()

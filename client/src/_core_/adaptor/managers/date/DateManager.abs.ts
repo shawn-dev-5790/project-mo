@@ -18,7 +18,7 @@ export type TParse =
 
 export type TFormat =
   | 'HH:mm'
-  | 'MMM dd, yyyy EEE HH:mm O'
+  | 'MMM dd, yyyy HH:mm EEE O'
   | 'MMM dd, yyyy HH:mm'
   | 'MMM dd, yyyy'
   | 'yyyy-MM-dd'

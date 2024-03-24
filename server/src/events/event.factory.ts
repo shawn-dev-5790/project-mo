@@ -5,7 +5,7 @@ export class EventFactory {
   generateEvent(): EventEntity {
     return {
       id: Dummy.id(),
-      type: Dummy.pickOne(['WEATHER', 'NEWS', 'HOILYDAY']),
+      type: Dummy.pickOne(['WEATHER', 'NEWS', 'HOLIDAY', 'SPORTS', 'MUSIC', 'MOVIE', 'TVSHOW', 'GAME', 'OTHER']),
       name: Dummy.txt('name'),
       cont: Dummy.txt('cont'),
       created_at: Dummy.date(),
