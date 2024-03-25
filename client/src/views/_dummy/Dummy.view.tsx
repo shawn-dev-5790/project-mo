@@ -1,5 +1,5 @@
-import { useReadUser } from '../../_core_/adaptor/managers/network/endpoints/getUser'
-import { useReadUsers } from '../../_core_/adaptor/managers/network/endpoints/getUsers'
+import { useReadUser } from '../../_core_/managers/network/endpoints/getUser'
+import { useReadUsers } from '../../_core_/managers/network/endpoints/getUsers'
 import {
   AppProtectorForPermission,
   AppProtectorForDivice,
@@ -7,7 +7,7 @@ import {
   AppProtectorForSiteId,
   AppProtectorForCampaignId,
   AppProtectorForView,
-} from '../../_core_/adaptor/react/AppProtector'
+} from '../../_core_/managers/react/AppProtector'
 
 const DummyView: React.FC = () => {
   return (

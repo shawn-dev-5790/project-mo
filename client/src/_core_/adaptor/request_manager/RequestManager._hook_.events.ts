@@ -1,9 +1,10 @@
 import { UseMutationOptions, useMutation, useSuspenseQuery } from '@tanstack/react-query'
-import { appRequestManager } from './RequestManager'
+import RequestManager from './RequestManager'
 
 export interface IModelEvent {
   id: string
   type: string
+  img: string
   name: string
   cont: string
   created_at: Date
@@ -35,7 +36,10 @@ export const useGetAllEvents = (page: number, size: number) => {
   }
   return useSuspenseQuery({
     queryKey: [req.url, req.params.page, req.params.size],
-    queryFn: () => appRequestManager.request<IReqGetAllEvents, IResGetAllEvents>(req).then((res) => res.data),
+    queryFn: () =>
+      RequestManager.getInstance()
+        .request<IReqGetAllEvents, IResGetAllEvents>(req)
+        .then((res) => res.data),
   })
 }
 
@@ -59,14 +63,17 @@ export const useGetEventById = (id: string) => {
   }
   return useSuspenseQuery({
     queryKey: [req.url, req.path.id],
-    queryFn: () => appRequestManager.request<IReqGetEventById, IResGetEventById>(req).then((res) => res.data),
+    queryFn: () =>
+      RequestManager.getInstance()
+        .request<IReqGetEventById, IResGetEventById>(req)
+        .then((res) => res.data),
   })
 }
 
 export interface IReqCreateEvent {
   method: 'POST'
   url: '/events' | string
-  data: Pick<IModelEvent, 'type' | 'name' | 'cont'>
+  data: Pick<IModelEvent, 'type' | 'name' | 'cont' | 'img'>
 }
 export interface IResCreateEvent {
   code: string
@@ -83,7 +90,10 @@ export const useCreateEvent = (data: IReqCreateEvent['data'], options: UseMutati
   }
   return useMutation({
     mutationKey: [req.url],
-    mutationFn: () => appRequestManager.request<IReqCreateEvent, IResCreateEvent>(req).then((res) => res.data),
+    mutationFn: () =>
+      RequestManager.getInstance()
+        .request<IReqCreateEvent, IResCreateEvent>(req)
+        .then((res) => res.data),
     ...options,
   })
 }
@@ -92,7 +102,7 @@ export interface IReqUpdateEvent {
   method: 'PATCH'
   url: '/events/:id' | string
   path: { id: string }
-  data: Partial<Pick<IModelEvent, 'type' | 'name' | 'cont'>>
+  data: Partial<Pick<IModelEvent, 'name' | 'cont'>>
 }
 export interface IResUpdateEvent {
   code: string
@@ -110,7 +120,10 @@ export const useUpdateEvent = (id: string, data: IReqUpdateEvent['data'], option
   }
   return useMutation({
     mutationKey: [req.url, req.path.id],
-    mutationFn: () => appRequestManager.request<IReqUpdateEvent, IResUpdateEvent>(req).then((res) => res.data),
+    mutationFn: () =>
+      RequestManager.getInstance()
+        .request<IReqUpdateEvent, IResUpdateEvent>(req)
+        .then((res) => res.data),
     ...options,
   })
 }
@@ -133,7 +146,10 @@ export const useDeleteEvent = (id: string, options: UseMutationOptions = {}) => 
   }
   return useMutation({
     mutationKey: [req.url, req.path.id],
-    mutationFn: () => appRequestManager.request<IReqDeleteEvent, IResDeleteEvent>(req).then((res) => res.data),
+    mutationFn: () =>
+      RequestManager.getInstance()
+        .request<IReqDeleteEvent, IResDeleteEvent>(req)
+        .then((res) => res.data),
     ...options,
   })
 }

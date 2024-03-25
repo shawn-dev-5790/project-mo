@@ -7,6 +7,9 @@ export class Dummy {
   static txt(prefix: string) {
     return prefix + 'txt-1'
   }
+  static img() {
+    return 'https://i.pinimg.com/564x/b5/e2/54/b5e254e54d58469dd56334c1334c29cf.jpg'
+  }
 
   static int(min: number, max: number) {
     return Math.floor(Math.random() * (max - min + 1)) + min

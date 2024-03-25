@@ -1,6 +1,6 @@
 import style from './List.module.css'
 
-import { IResGetUserList } from '../../../_core_/adaptor/managers/network/endpoints/getUsers'
+import { IResGetUserList } from '../../../_core_/managers/network/endpoints/getUsers'
 
 export const List: React.FC<{ data: IResGetUserList; lang: null; opts: null }> = (props) => {
   return (

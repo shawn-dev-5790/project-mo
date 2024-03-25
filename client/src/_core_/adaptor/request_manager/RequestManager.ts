@@ -18,14 +18,21 @@ export default class RequestManager {
     return RequestManager.instance
   }
 
-  private baseEngine: RequestManagerAxios = new RequestManagerAxios({
+  // request.axios - main
+  private main_server: RequestManagerAxios = new RequestManagerAxios({
     baseURL: 'http://localhost:3000',
     headers: { 'Content-Type': 'application/json' },
   })
+  public async request<Req, Res>(req: Req): Promise<AxiosResponse<Res>> {
+    return RequestManager.instance.main_server.instance.request<Res>(req as AxiosRequestConfig)
+  }
 
-  async request<Req, Res>(req: Req): Promise<AxiosResponse<Res>> {
-    return this.baseEngine.instance.request<Res>(req as AxiosRequestConfig)
+  // request.axios - log
+  private log_server: RequestManagerAxios = new RequestManagerAxios({
+    baseURL: 'http://localhost:4802',
+    headers: { 'Content-Type': 'application/json' },
+  })
+  public async requestLog<Req, Res>(req: Req): Promise<AxiosResponse<Res>> {
+    return RequestManager.instance.log_server.instance.request<Res>(req as AxiosRequestConfig)
   }
 }
-
-export const appRequestManager = RequestManager.getInstance()

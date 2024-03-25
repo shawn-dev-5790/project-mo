@@ -10,6 +10,12 @@ export class EventDto extends EventEntity {
   @ApiProperty({ example: 'HOLYDAY', description: 'event type' })
   type: string
 
+  @ApiProperty({
+    example: 'https://i.pinimg.com/564x/b5/e2/54/b5e254e54d58469dd56334c1334c29cf.jpg',
+    description: 'event img',
+  })
+  img: string
+
   @ApiProperty({ example: 'black friday is coming', description: 'event name' })
   name: string
 
@@ -51,7 +57,7 @@ export class EventQueryParamDto extends IntersectionType(
   PickType(BasePageDto, ['page', 'size'] as const),
   PickType(EventDto, ['id'] as const),
 ) {}
-export class BodyForCreateEventDto extends PickType(EventDto, ['type', 'name', 'cont'] as const) {}
+export class BodyForCreateEventDto extends PickType(EventDto, ['type', 'img', 'name', 'cont'] as const) {}
 export class BodyForUpdateEventDto extends IntersectionType(
   PickType(EventDto, ['name'] as const),
   PartialType(PickType(EventDto, ['cont'] as const)),

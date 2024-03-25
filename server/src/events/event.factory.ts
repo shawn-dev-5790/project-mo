@@ -6,6 +6,7 @@ export class EventFactory {
     return {
       id: Dummy.id(),
       type: Dummy.pickOne(['WEATHER', 'NEWS', 'HOLIDAY', 'SPORTS', 'MUSIC', 'MOVIE', 'TVSHOW', 'GAME', 'OTHER']),
+      img: Dummy.img(),
       name: Dummy.txt('name'),
       cont: Dummy.txt('cont'),
       created_at: Dummy.date(),

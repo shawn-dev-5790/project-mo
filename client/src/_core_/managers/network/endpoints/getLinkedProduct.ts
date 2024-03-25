@@ -1,7 +1,7 @@
 import { useSuspenseQuery } from '@tanstack/react-query'
 import NetworkManager from '../Network.manager'
 import { Nullable } from 'vitest'
-import { sleep } from '../../../../util/sleep'
+import { sleep } from '../../../util/sleep'
 
 export interface IReqGetLinkedProduct {
   method: 'GET'

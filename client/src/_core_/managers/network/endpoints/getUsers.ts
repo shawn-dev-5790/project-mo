@@ -1,5 +1,5 @@
 import { useSuspenseQuery } from '@tanstack/react-query'
-import { sleep } from '../../../../util/sleep'
+import { sleep } from '../../../util/sleep'
 import NetworkManager from '../Network.manager'
 
 export interface IReqGetUserList {

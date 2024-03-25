@@ -1,5 +1,5 @@
 import css from './GalleryLinkedImage.module.css'
-import { useReadLinkedProduct } from '../../../_core_/adaptor/managers/network/endpoints/getLinkedProduct'
+import { useReadLinkedProduct } from '../../../_core_/managers/network/endpoints/getLinkedProduct'
 
 export const GalleryLinkedImage: React.FC = () => {
   const { data: linkedProductsRes = null } = useReadLinkedProduct({ query: { lang: 'ko', size: 5 } })

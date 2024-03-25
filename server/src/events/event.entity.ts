@@ -9,6 +9,9 @@ export class EventEntity {
   type: string
 
   @Column()
+  img: string
+
+  @Column()
   name: string
 
   @Column()
