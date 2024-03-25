@@ -18,7 +18,7 @@ export const List: React.FC<{ data: IResGetUserList; lang: null; opts: null }> =
 }
 
 const Item: React.FC<{ data: IResGetUserList['data'][number] }> = (props) => {
-  const { id, email, first_name, last_name, avatar } = props.data
+  const { email, first_name, last_name, avatar } = props.data
 
   return (
     <li className={style.item_wrap}>
