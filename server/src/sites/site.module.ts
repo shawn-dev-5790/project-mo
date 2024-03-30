@@ -1,10 +1,13 @@
 import { Module } from '@nestjs/common'
-import { SiteController } from './site.controller'
+import { TypeOrmModule } from '@nestjs/typeorm'
+import { SiteEntity } from './site.entity'
+import { SiteRepository } from './site.repository'
 import { SiteService } from './site.service'
-import { SiteFactory } from './site.factory'
 
 @Module({
-  controllers: [SiteController],
-  providers: [SiteService, SiteFactory],
+  imports: [TypeOrmModule.forFeature([SiteEntity, SiteRepository])],
+  controllers: [],
+  providers: [SiteService],
+  exports: [SiteService],
 })
 export class SiteModule {}
