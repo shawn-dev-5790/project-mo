@@ -14,11 +14,11 @@ export class EventService {
     private readonly eventFactory: EventFactory,
   ) {}
 
-  async findAllEvents(): Promise<EventEntity[]> {
+  async find(): Promise<EventEntity[]> {
     return this.eventRepository.find()
   }
 
-  async getEventById(id: string): Promise<EventEntity | undefined> {
+  async findOne(id: string): Promise<EventEntity | undefined> {
     return this.eventRepository.findOne({ where: { id } })
   }
 

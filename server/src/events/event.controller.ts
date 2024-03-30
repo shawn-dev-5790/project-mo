@@ -25,7 +25,7 @@ export class EventController {
     @Query('page') reqPage: EventQueryParamDto['page'],
     @Query('size') reqSize: EventQueryParamDto['size'],
   ): Promise<ResEventListDto> {
-    const events = await this.eventService.findAllEvents()
+    const events = await this.eventService.find()
     const total = events.length
     const page = Number(reqPage)
     const size = Number(reqSize)
@@ -47,7 +47,7 @@ export class EventController {
   @ApiResponse({ status: 404, description: 'Event not found' })
   @ApiParam({ name: 'event_id', type: 'string', example: 'b7f79334-15e1-483b-ac3a-9a1de56b88e5' })
   async getEventById(@Param('event_id') id: EventQueryParamDto['id']): Promise<ResEventDetailDto> {
-    const event = await this.eventService.getEventById(id)
+    const event = await this.eventService.findOne(id)
 
     if (!event) throw new NotFoundException('Event not found')
 
@@ -72,7 +72,7 @@ export class EventController {
     @Param('event_id') id: EventQueryParamDto['id'],
     @Body() body: BodyForUpdateEventDto,
   ): Promise<ResEventDetailDto> {
-    const event = await this.eventService.getEventById(id)
+    const event = await this.eventService.findOne(id)
 
     if (!event) throw new NotFoundException('Event not found')
 
@@ -87,7 +87,7 @@ export class EventController {
   @ApiResponse({ status: 404, description: 'Event not found' })
   @ApiParam({ name: 'event_id', type: 'string', example: 'b7f79334-15e1-483b-ac3a-9a1de56b88e5' })
   async deleteEvent(@Param('event_id') id: EventQueryParamDto['id']): Promise<ResEventDetailDto> {
-    const event = await this.eventService.getEventById(id)
+    const event = await this.eventService.findOne(id)
 
     if (!event) throw new NotFoundException('Event not found')
 
