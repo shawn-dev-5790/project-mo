@@ -11,10 +11,14 @@ export class SiteService {
   ) {}
 
   async find(): Promise<SiteEntity[]> {
-    return this.siteRepository.find()
+    return await this.siteRepository.find()
   }
 
   async findOne(id: string): Promise<SiteEntity | undefined> {
-    return this.siteRepository.findOne({ where: { id } })
+    return await this.siteRepository.findOne({ where: { id } })
+  }
+
+  async create(site: Partial<SiteEntity>): Promise<SiteEntity> {
+    return await this.siteRepository.save(site)
   }
 }

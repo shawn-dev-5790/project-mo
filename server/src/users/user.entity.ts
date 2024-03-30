@@ -7,19 +7,19 @@ export class UserEntity {
   id: string
 
   @Column()
-  name: string
-
-  @Column()
   email: string
-
-  @Column()
-  phone: string
 
   @Column()
   pwd: string
 
-  @Column()
-  img_url: string
+  @Column({ nullable: true })
+  name: string | null
+
+  @Column({ nullable: true })
+  phone: string | null
+
+  @Column({ nullable: true })
+  img_url: string | null
 
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   created_at: Date

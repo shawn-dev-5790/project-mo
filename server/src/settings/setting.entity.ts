@@ -5,43 +5,43 @@ export class SettingEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string
 
-  @Column()
+  @Column({ default: false })
   is_site_meta_done: boolean
 
-  @Column()
+  @Column({ default: false })
   is_site_script_done: boolean
 
-  @Column()
+  @Column({ default: false })
   is_site_user_done: boolean
 
-  @Column()
+  @Column({ default: false })
   is_site_all_done: boolean
 
-  @Column()
+  @Column({ default: false })
   is_kakao_app_installed: boolean
 
-  @Column()
+  @Column({ default: false })
   is_kakao_channel_added: boolean
 
-  @Column()
+  @Column({ default: false })
   is_kakao_all_done: boolean
 
-  @Column()
+  @Column({ default: false })
   is_email_spf_done: boolean
 
-  @Column()
+  @Column({ default: false })
   is_email_dkim_done: boolean
 
-  @Column()
+  @Column({ default: false })
   is_email_header_done: boolean
 
-  @Column()
+  @Column({ default: false })
   is_email_footer_done: boolean
 
-  @Column()
+  @Column({ default: false })
   is_email_senders_done: boolean
 
-  @Column()
+  @Column({ default: false })
   is_email_all_done: boolean
 
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })

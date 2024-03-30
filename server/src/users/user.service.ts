@@ -11,10 +11,14 @@ export class UserService {
   ) {}
 
   async find(): Promise<UserEntity[]> {
-    return this.userRepository.find()
+    return await this.userRepository.find()
   }
 
   async findOne(id: string): Promise<UserEntity | undefined> {
-    return this.userRepository.findOne({ where: { id } })
+    return await this.userRepository.findOne({ where: { id } })
+  }
+
+  async create(user: Partial<UserEntity>): Promise<UserEntity> {
+    return await this.userRepository.save(user)
   }
 }

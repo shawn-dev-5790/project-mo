@@ -11,10 +11,19 @@ export class SettingService {
   ) {}
 
   async find(): Promise<SettingEntity[]> {
-    return this.settingRepository.find()
+    return await this.settingRepository.find()
   }
 
   async findOne(id: string): Promise<SettingEntity | undefined> {
-    return this.settingRepository.findOne({ where: { id } })
+    return await this.settingRepository.findOne({ where: { id } })
+  }
+
+  async create(setting: Partial<SettingEntity>): Promise<SettingEntity> {
+    return await this.settingRepository.save(setting)
+  }
+
+  async generate(): Promise<SettingEntity> {
+    const generated = new SettingEntity()
+    return await this.settingRepository.save(generated)
   }
 }

@@ -11,6 +11,7 @@ import { ReportModule } from 'src/reports/report.module'
 import { ScheduleModule } from 'src/schedules/schedule.module'
 import { AudienceModule } from 'src/audiences/audience.module'
 import { CreativeMoudle } from 'src/creatives/creative.module'
+import { MemberModule } from 'src/members/member.module'
 
 @Module({
   imports: [
@@ -24,6 +25,7 @@ import { CreativeMoudle } from 'src/creatives/creative.module'
       entities: [__dirname + '/../**/*.entity{.ts,.js}'],
       synchronize: true,
     }),
+    MemberModule,
     EventModule,
     SiteModule,
     CampaignModule,

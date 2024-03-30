@@ -24,6 +24,14 @@ export enum ESitePlatform {
   GODOMALL = 'GODOMALL',
 }
 
+export enum ESiteRegion {
+  KOREA = 'KOREA',
+  USA = 'USA',
+  CHINA = 'CHINA',
+  JAPAN = 'JAPAN',
+  GERMANY = 'GERMANY',
+}
+
 @Entity({ name: 'site' })
 export class SiteEntity {
   @PrimaryGeneratedColumn('uuid')
@@ -50,8 +58,12 @@ export class SiteEntity {
   })
   platform: ESitePlatform
 
-  @Column()
-  phone: string
+  @Column({
+    type: 'enum',
+    enum: ESiteRegion,
+    default: ESiteRegion.KOREA,
+  })
+  region: ESiteRegion
 
   @Column()
   name: string
@@ -59,11 +71,8 @@ export class SiteEntity {
   @Column()
   host: string
 
-  @Column()
-  logo_url: string
-
-  @Column()
-  region: string
+  @Column({ nullable: true })
+  logo_url: string | null
 
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   created_at: Date
