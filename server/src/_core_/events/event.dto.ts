@@ -1,6 +1,6 @@
 import { ApiProperty, IntersectionType, PartialType, PickType } from '@nestjs/swagger'
 import { EventEntity } from './event.entity'
-import { BasePageDto, BaseResDto } from 'src/_core_/dto/base.dto'
+import { BasePageDto, BaseResDto } from 'src/_core_/base.dto'
 
 // entity > dto
 export class EventDto extends EventEntity {

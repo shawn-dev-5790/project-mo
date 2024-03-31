@@ -2,7 +2,7 @@ import { ESitePlatform, ESiteRegion, SiteEntity } from 'src/sites/site.entity'
 import { UserEntity } from 'src/users/user.entity'
 import { MemberEntity } from './member.entity'
 import { ApiProperty, OmitType } from '@nestjs/swagger'
-import { BaseResDto } from 'src/_core_/dto/base.dto'
+import { BasePageDto, BaseResDto } from 'src/_core_/base.dto'
 import { SettingEntity } from 'src/settings/setting.entity'
 
 // ================================
@@ -28,6 +28,13 @@ export class MemberDataDto {
 
   @ApiProperty({ type: SettingDto })
   setting: SettingDto
+}
+export class MembersDataDto {
+  @ApiProperty({ type: [MemberDto] })
+  members: MemberDto[]
+
+  @ApiProperty({ type: BasePageDto })
+  members_page: BasePageDto
 }
 
 // ================================
@@ -68,4 +75,15 @@ export class CreateMemberReqDto {
     description: 'Site region',
   })
   site_region: ESiteRegion
+}
+export class MembersResDto extends BaseResDto {
+  @ApiProperty({ type: MembersDataDto })
+  data: MembersDataDto
+}
+export class MembersReqDto {
+  @ApiProperty({ example: 1 })
+  page: number
+
+  @ApiProperty({ example: 10 })
+  size: number
 }

@@ -5,18 +5,16 @@ import { MemberEntity } from './member.entity'
 import { SiteService } from 'src/sites/site.service'
 import { SettingService } from 'src/settings/setting.service'
 import { UserService } from 'src/users/user.service'
-import { CreateMemberReqDto, MemberDataDto } from './member.dto'
-import { omit } from 'src/_core_/util/object'
+import { CreateMemberReqDto, MemberDataDto, MembersDataDto, MembersReqDto } from './member.dto'
+import { omit } from 'src/_core_/util.object'
 
 @Injectable()
 export class MemberService {
   constructor(
     @InjectEntityManager()
     private readonly entityManager,
-
     @InjectRepository(MemberEntity)
     private readonly memberRepository: Repository<MemberEntity>,
-
     private readonly siteService: SiteService,
     private readonly userService: UserService,
     private readonly settingService: SettingService,
@@ -31,11 +29,16 @@ export class MemberService {
     }
   }
 
-  async find(): Promise<MemberEntity[]> {
-    return this.memberRepository.find()
+  async findAndCount(req: MembersReqDto): Promise<MembersDataDto> {
+    const { page = 1, size = 10 } = req
+    const [members, total] = await this.memberRepository.findAndCount({
+      take: size,
+      skip: (page - 1) * size,
+    })
+    return { members, members_page: { page, size, total } }
   }
 
-  async findOne(id: string): Promise<MemberDataDto> {
+  async findById(id: string): Promise<MemberDataDto> {
     const member = await this.memberRepository
       .createQueryBuilder('member')
       .leftJoinAndSelect('member.site', 'site')
@@ -48,25 +51,27 @@ export class MemberService {
   }
 
   async create(req: CreateMemberReqDto): Promise<MemberDataDto> {
+    const { user_email, user_pwd, site_name, site_host, site_platform, site_region, member_type } = req
+
     const onTransaction = async () => {
       const user = await this.userService.create({
-        email: req.user_email,
-        pwd: req.user_pwd,
+        email: user_email,
+        pwd: user_pwd,
       })
       const site = await this.siteService.create({
-        name: req.site_name,
-        host: req.site_host,
-        platform: req.site_platform,
-        region: req.site_region,
+        name: site_name,
+        host: site_host,
+        platform: site_platform,
+        region: site_region,
       })
       const setting = await this.settingService.generate()
       const member = await this.memberRepository.save({
         user_id: user.id,
         site_id: site.id,
         setting_id: setting.id,
-        type: req.member_type,
+        type: member_type,
       })
-      return await this.findOne(member.id)
+      return await this.findById(member.id)
     }
 
     return this.entityManager.transaction(onTransaction)
