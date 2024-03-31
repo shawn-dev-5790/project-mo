@@ -1,13 +1,17 @@
 import { Routes, Route } from 'react-router-dom'
-import HomeView from '../../../views/home/Home.view'
-import UsersView from '../../../views/users/Users.view'
-import RouteManager from '../route/Route.manager'
-import GalleryView from '../../../views/gallery/Gallery.view'
-import CampaignView from '../../../views/campaign/Campaign.view'
+import HomeView from '../views/home/Home.view'
+import UsersView from '../views/users/Users.view'
+import RouteManager from '../_core_/managers/route/Route.manager'
+import GalleryView from '../views/gallery/Gallery.view'
+import CampaignView from '../views/campaign/Campaign.view'
+import SignInView from '../views/auth/SignIn.view'
 
 export const AppRouter: React.FC = () => {
   return (
     <Routes>
+      <Route path="/sign-in" element={<SignInView />} />
+      <Route path="/sign-up" element={<SignInView />} />
+      <Route path="/password-reset" element={<SignInView />} />
       <Route path="/users">
         <Route path="" element={<AppRouteErrorMessage code="404" />} />
         <Route path=":userId" element={<UsersView />} />

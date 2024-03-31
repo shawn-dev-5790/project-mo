@@ -2,8 +2,8 @@ import css from './Home.EventList.module.css'
 
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { AppAsync } from '../../_core_/managers/react/AppAsync'
-import { AppFallbackError, AppFallbackLoading } from '../../_core_/managers/react/AppFallback'
+import { AppAsync } from '../../app/AppAsync'
+import { AppFallbackError, AppFallbackLoading } from '../../app/AppFallback'
 import { useAppDateManager } from '../../_core_/adaptor/date_manager/DateManager._hook_'
 import {
   IResGetAllEvents,

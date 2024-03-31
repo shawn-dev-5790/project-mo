@@ -7,7 +7,7 @@ import {
   AppProtectorForSiteId,
   AppProtectorForCampaignId,
   AppProtectorForView,
-} from '../../_core_/managers/react/AppProtector'
+} from '../../app/AppProtector'
 
 const DummyView: React.FC = () => {
   return (

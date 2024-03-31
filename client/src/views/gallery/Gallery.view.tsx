@@ -1,13 +1,13 @@
 import css from './Gallery.module.css'
-import { AppSuspense } from '../../_core_/managers/react/AppSuspense'
-import { AppFallbackError, AppFallbackLoading } from '../../_core_/managers/react/AppFallback'
+import { AppSuspense } from '../../app/AppSuspense'
+import { AppFallbackError, AppFallbackLoading } from '../../app/AppFallback'
 import { GalleryHeader } from './components/GalleryHeader'
 import { GalleryProducts } from './components/GalleryProducts'
 import { GalleryDetail } from './components/GalleryDetail'
 import { GalleryReviews } from './components/GalleryReviews'
 import { GalleryLinkedImage } from './components/GalleryLinkedImage'
 import { GalleryFooter } from './components/GalleryFooter'
-import { AppAsync } from '../../_core_/managers/react/AppAsync'
+import { AppAsync } from '../../app/AppAsync'
 
 const GalleryView: React.FC = () => {
   return (
