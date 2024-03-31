@@ -24,16 +24,21 @@ export class MemberController {
   @ApiOperation({ summary: 'Get member by id' })
   @ApiResponse({ status: 200, type: '', description: 'Get member by id' })
   @ApiResponse({ status: 404, description: 'member not found' })
-  async findOne(@Param('member_id') id: string) {
+  async findOne(@Param('member_id') id: string): Promise<CreateMemberResDto> {
     const member = await this.memberService.findOne(id)
 
     if (!member) throw new NotFoundException('member not found')
-    return { code: '0000', message: 'success', data: { member } }
+
+    return {
+      code: '0000',
+      message: 'success',
+      data: member,
+    }
   }
 
   @Post()
   @ApiOperation({ summary: 'Create member' })
-  @ApiResponse({ status: 201, type: '', description: 'The member has been successfully created.' })
+  @ApiResponse({ status: 201, type: CreateMemberResDto, description: 'The member has been successfully created.' })
   async create(@Body() body: CreateMemberReqDto): Promise<CreateMemberResDto> {
     const member = await this.memberService.create(body)
 

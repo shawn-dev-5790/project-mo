@@ -1,3 +1,4 @@
+import { ApiProperty } from '@nestjs/swagger'
 import { Entity, Column, PrimaryGeneratedColumn, DeleteDateColumn } from 'typeorm'
 
 export enum ESiteStatus {
@@ -34,9 +35,16 @@ export enum ESiteRegion {
 
 @Entity({ name: 'site' })
 export class SiteEntity {
+  @ApiProperty({ example: '1234-5678-1234-5678', description: 'Unique identifier' })
   @PrimaryGeneratedColumn('uuid')
   id: string
 
+  @ApiProperty({
+    enum: ESiteStatus,
+    default: ESiteStatus.PENDING,
+    example: 'PENDING',
+    description: 'Site status',
+  })
   @Column({
     type: 'enum',
     enum: ESiteStatus,
@@ -44,6 +52,12 @@ export class SiteEntity {
   })
   status: ESiteStatus
 
+  @ApiProperty({
+    enum: ESiteCategory,
+    default: ESiteCategory.CLOTHING,
+    example: 'CLOTHING',
+    description: 'Site category',
+  })
   @Column({
     type: 'enum',
     enum: ESiteCategory,
@@ -51,6 +65,12 @@ export class SiteEntity {
   })
   category: ESiteCategory
 
+  @ApiProperty({
+    enum: ESitePlatform,
+    default: ESitePlatform.SHOPIFY,
+    example: 'SHOPIFY',
+    description: 'Site platform',
+  })
   @Column({
     type: 'enum',
     enum: ESitePlatform,
@@ -58,6 +78,12 @@ export class SiteEntity {
   })
   platform: ESitePlatform
 
+  @ApiProperty({
+    enum: ESiteRegion,
+    default: ESiteRegion.KOREA,
+    example: 'KOREA',
+    description: 'Site region',
+  })
   @Column({
     type: 'enum',
     enum: ESiteRegion,
@@ -65,21 +91,27 @@ export class SiteEntity {
   })
   region: ESiteRegion
 
+  @ApiProperty({ example: 'testsite', description: 'Site name' })
   @Column()
   name: string
 
+  @ApiProperty({ example: 'http://test.co.kr', description: 'Site host' })
   @Column()
   host: string
 
+  @ApiProperty({ default: null, nullable: true, example: 'http://test.co.kr/logo.png', description: 'Site logo URL' })
   @Column({ nullable: true })
   logo_url: string | null
 
+  @ApiProperty({ example: '2021-08-08T00:00:00.000Z', description: 'Created date' })
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   created_at: Date
 
+  @ApiProperty({ example: '2021-08-08T00:00:00.000Z', description: 'Updated date' })
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP', onUpdate: 'CURRENT_TIMESTAMP' })
   updated_at: Date
 
+  @ApiProperty({ default: null, nullable: true, example: '2021-08-08T00:00:00.000Z', description: 'Deleted date' })
   @DeleteDateColumn({ type: 'timestamp', nullable: true })
   deleted_at: Date | null
 }

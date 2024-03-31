@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common'
-import { InjectRepository } from '@nestjs/typeorm'
+import { InjectEntityManager, InjectRepository } from '@nestjs/typeorm'
 import { Repository } from 'typeorm'
 import { MemberEntity } from './member.entity'
 import { SiteService } from 'src/sites/site.service'
@@ -11,8 +11,12 @@ import { omit } from 'src/_core_/util/object'
 @Injectable()
 export class MemberService {
   constructor(
+    @InjectEntityManager()
+    private readonly entityManager,
+
     @InjectRepository(MemberEntity)
     private readonly memberRepository: Repository<MemberEntity>,
+
     private readonly siteService: SiteService,
     private readonly userService: UserService,
     private readonly settingService: SettingService,
@@ -44,23 +48,27 @@ export class MemberService {
   }
 
   async create(req: CreateMemberReqDto): Promise<MemberDataDto> {
-    const user = await this.userService.create({
-      email: req.user_email,
-      pwd: req.user_pwd,
-    })
-    const site = await this.siteService.create({
-      name: req.site_name,
-      host: req.site_host,
-      platform: req.site_platform,
-      region: req.site_region,
-    })
-    const setting = await this.settingService.generate()
-    const member = await this.memberRepository.save({
-      user_id: user.id,
-      site_id: site.id,
-      setting_id: setting.id,
-      type: req.member_type,
-    })
-    return this.createMemeberData(member)
+    const onTransaction = async () => {
+      const user = await this.userService.create({
+        email: req.user_email,
+        pwd: req.user_pwd,
+      })
+      const site = await this.siteService.create({
+        name: req.site_name,
+        host: req.site_host,
+        platform: req.site_platform,
+        region: req.site_region,
+      })
+      const setting = await this.settingService.generate()
+      const member = await this.memberRepository.save({
+        user_id: user.id,
+        site_id: site.id,
+        setting_id: setting.id,
+        type: req.member_type,
+      })
+      return await this.findOne(member.id)
+    }
+
+    return this.entityManager.transaction(onTransaction)
   }
 }

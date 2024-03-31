@@ -17,7 +17,7 @@ async function bootstrap() {
     .addTag('API')
     .build()
   const document = SwaggerModule.createDocument(app, documentOptions)
-  const swaggerOptions = { defaultModelExpandDepth: 5, defaultModelsExpandDepth: 5 }
+  const swaggerOptions = { defaultModelExpandDepth: 10, defaultModelsExpandDepth: 10 }
 
   SwaggerModule.setup('docs', app, document, { swaggerOptions })
 
